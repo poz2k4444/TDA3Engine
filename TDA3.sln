@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDA3Engine", "TDA3Engine\TDA3Engine.csproj", "{6ED8A7F9-B99D-4160-9EEE-4BF100B39123}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDA3Game", "TDA3Game\TDA3Game\TDA3Game.csproj", "{7A3ECC18-97CC-4C09-A6C0-DB3BB0E1C09C}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TDA3GameContent", "TDA3Game\TDA3GameContent\TDA3GameContent.contentproj", "{08F9A9B1-97D5-4213-837E-6389BB50A44B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ED8A7F9-B99D-4160-9EEE-4BF100B39123}.Debug|x86.ActiveCfg = Debug|x86
+		{6ED8A7F9-B99D-4160-9EEE-4BF100B39123}.Debug|x86.Build.0 = Debug|x86
+		{6ED8A7F9-B99D-4160-9EEE-4BF100B39123}.Release|x86.ActiveCfg = Release|x86
+		{6ED8A7F9-B99D-4160-9EEE-4BF100B39123}.Release|x86.Build.0 = Release|x86
+		{7A3ECC18-97CC-4C09-A6C0-DB3BB0E1C09C}.Debug|x86.ActiveCfg = Debug|x86
+		{7A3ECC18-97CC-4C09-A6C0-DB3BB0E1C09C}.Debug|x86.Build.0 = Debug|x86
+		{7A3ECC18-97CC-4C09-A6C0-DB3BB0E1C09C}.Release|x86.ActiveCfg = Release|x86
+		{7A3ECC18-97CC-4C09-A6C0-DB3BB0E1C09C}.Release|x86.Build.0 = Release|x86
+		{08F9A9B1-97D5-4213-837E-6389BB50A44B}.Debug|x86.ActiveCfg = Debug|x86
+		{08F9A9B1-97D5-4213-837E-6389BB50A44B}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
