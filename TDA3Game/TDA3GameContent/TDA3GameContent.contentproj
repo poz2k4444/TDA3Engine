@@ -57,18 +57,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Audio\Sound Bank.xsb">
-      <Name>Sound Bank</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Audio\tdgame.xgs">
-      <Name>tdgame</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Audio\Wave Bank.xwb">
-      <Name>Wave Bank</Name>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <Compile Include="Fonts\menu.spritefont">
       <Name>menu</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -129,21 +117,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\Help\help_1.jpg">
-      <Name>help_1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Help\help_2.jpg">
-      <Name>help_2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Help\help_3.jpg">
-      <Name>help_3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Textures\Maps\Forest\BasicTower.png">
       <Name>BasicTower</Name>
       <Importer>TextureImporter</Importer>
@@ -229,226 +202,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\Maps\Snow\BasicTower.png">
-      <Name>BasicTower</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\basic_thumb.png">
-      <Name>basic_thumb</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\bombtower.png">
-      <Name>bombtower</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\bomb_thumb.png">
-      <Name>bomb_thumb</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\border.png">
-      <Name>border</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\Bullets\bomb.png">
-      <Name>bomb</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\Bullets\bomb_particle.png">
-      <Name>bomb_particle</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\Bullets\pebble.png">
-      <Name>pebble</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\Bullets\pebble_particle.png">
-      <Name>pebble_particle</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\Bullets\poison.png">
-      <Name>poison</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\Bullets\poison_particle.png">
-      <Name>poison_particle</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\button_lg_error.png">
-      <Name>button_lg_error</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\button_lg_normal.png">
-      <Name>button_lg_normal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\button_sm_error.png">
-      <Name>button_sm_error</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\button_sm_normal.png">
-      <Name>button_sm_normal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\gate.png">
-      <Name>gate</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\house.png">
-      <Name>house</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\infobar_bg.png">
-      <Name>infobar_bg</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\mouse.png">
-      <Name>mouse</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\PoisonTower.png">
-      <Name>PoisonTower</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\poison_thumb.png">
-      <Name>poison_thumb</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\radius.png">
-      <Name>radius</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\thumbnail.png">
-      <Name>thumbnail</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Snow\tiles.png">
-      <Name>tiles</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\BasicTower.png">
-      <Name>BasicTower</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\basic_thumb.png">
-      <Name>basic_thumb</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\border.png">
-      <Name>border</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\Bullets\pebble.png">
-      <Name>pebble</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\Bullets\pebble_particle.png">
-      <Name>pebble_particle</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\Bullets\poison.png">
-      <Name>poison</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\Bullets\poison_particle.png">
-      <Name>poison_particle</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\button_lg_error.png">
-      <Name>button_lg_error</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\button_lg_normal.png">
-      <Name>button_lg_normal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\button_sm_error.png">
-      <Name>button_sm_error</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\button_sm_normal.png">
-      <Name>button_sm_normal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\gate.png">
-      <Name>gate</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\house.png">
-      <Name>house</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\infobar_bg.png">
-      <Name>infobar_bg</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\mouse.png">
-      <Name>mouse</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\PoisonTower.png">
-      <Name>PoisonTower</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\poison_thumb.png">
-      <Name>poison_thumb</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\radius.png">
-      <Name>radius</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\thumbnail.png">
-      <Name>thumbnail</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Maps\Vector\tiles.png">
-      <Name>tiles</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Textures\Menu\activebutton.png">
       <Name>activebutton</Name>
       <Importer>TextureImporter</Importer>
@@ -489,73 +242,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\Monsters\bug.png">
-      <Name>bug</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Monsters\bug_hit.png">
-      <Name>bug_hit</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Monsters\cookie.png">
-      <Name>cookie</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Monsters\cookie_hit.png">
-      <Name>cookie_hit</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Monsters\fly.png">
-      <Name>fly</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Monsters\fly_hit.png">
-      <Name>fly_hit</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Monsters\icebrute.png">
-      <Name>icebrute</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Monsters\icebrute_hit.png">
-      <Name>icebrute_hit</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Monsters\swampcreature.png">
-      <Name>swampcreature</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Monsters\swampcreature_hit.png">
-      <Name>swampcreature_hit</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Monsters\trojanhorse.png">
-      <Name>trojanhorse</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Monsters\trojanhorse_hit.png">
-      <Name>trojanhorse_hit</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Video\Intro.wmv">
-      <Name>Intro</Name>
-      <Importer>WmvImporter</Importer>
-      <Processor>VideoProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Maps\Forest\Forest.xml">
@@ -570,50 +256,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Monsters\bug.xml">
-      <Name>bug</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-    <Compile Include="Monsters\cookie.xml">
-      <Name>cookie</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-    <Compile Include="Monsters\FastAnt.xml">
-      <Name>FastAnt</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-    <Compile Include="Monsters\Fly.xml">
-      <Name>Fly</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-    <Compile Include="Monsters\IceBrute.xml">
-      <Name>IceBrute</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
     <Compile Include="Monsters\SlowAnt.xml">
       <Name>SlowAnt</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-    <Compile Include="Monsters\SwampCreature.xml">
-      <Name>SwampCreature</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-    <Compile Include="Monsters\trojanhorse.xml">
-      <Name>trojanhorse</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
       <SubType>Designer</SubType>
@@ -626,18 +270,6 @@
       <Processor>PassThroughProcessor</Processor>
       <SubType>Designer</SubType>
     </Compile>
-    <Compile Include="Towers\BombTower.xml">
-      <Name>BombTower</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-    <Compile Include="Towers\PoisonTower.xml">
-      <Name>PoisonTower</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Towers\Bullets\Basic.xml">
@@ -646,79 +278,18 @@
       <Processor>PassThroughProcessor</Processor>
       <SubType>Designer</SubType>
     </Compile>
-    <Compile Include="Towers\Bullets\Bomb.xml">
-      <Name>Bomb</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-    <Compile Include="Towers\Bullets\Poison.xml">
-      <Name>Poison</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Wave\Cookies.xml">
-      <Name>Cookies</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-    <Compile Include="Wave\Flies.xml">
-      <Name>Flies</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-    <Compile Include="Wave\IceBoss.xml">
-      <Name>IceBoss</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-    <Compile Include="Wave\Infection.xml">
-      <Name>Infection</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-    <Compile Include="Wave\SlightlyFastAnts.xml">
-      <Name>SlightlyFastAnts</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-    <Compile Include="Wave\SlowBugs.xml">
-      <Name>SlowBugs</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-    <Compile Include="Wave\SlowBugs2.xml">
-      <Name>SlowBugs2</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-    <Compile Include="Wave\SwampBoss.xml">
-      <Name>SwampBoss</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
     <Compile Include="Wave\VerySlowAnts.xml">
       <Name>VerySlowAnts</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
     </Compile>
-    <Compile Include="Wave\VerySlowAnts2.xml">
-      <Name>VerySlowAnts2</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
-    <Compile Include="Wave\VerySlowAnts3.xml">
-      <Name>VerySlowAnts3</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Audio\" />
+    <Folder Include="Textures\Help\" />
+    <Folder Include="Video\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

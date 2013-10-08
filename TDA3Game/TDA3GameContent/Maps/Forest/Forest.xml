@@ -43,13 +43,6 @@
     </TowersAvailable>
     <WavesAvailable>
       <Item>VerySlowAnts</Item>
-      <Item>VerySlowAnts</Item>
-      <Item>VerySlowAnts</Item>
-      <Item>VerySlowAnts2</Item>
-      <Item>VerySlowAnts2</Item>
-      <Item>VerySlowAnts2</Item>
-      <Item>Flies</Item>
-      <Item>SwampBoss</Item>
     </WavesAvailable>
     <WaveDelay>10</WaveDelay>
     <Difficulty>1</Difficulty>
