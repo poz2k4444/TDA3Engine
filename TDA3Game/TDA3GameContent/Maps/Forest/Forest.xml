@@ -4,7 +4,7 @@
     <Name>Forest</Name>
     <Dimensions>15 11</Dimensions>
     <TileDimensions>64 64</TileDimensions>
-    <Description>This is a map with a forest theme</Description>
+    <Description>Tema forest</Description>
     <ThumbnailAsset>thumbnail</ThumbnailAsset>
     <TileSheetAsset>tiles</TileSheetAsset>
     <GroundTiles>
@@ -42,7 +42,7 @@
       <Item>BasicTower</Item>
     </TowersAvailable>
     <WavesAvailable>
-      <Item>VerySlowAnts</Item>
+      <Item>VerySlowAliens</Item>
     </WavesAvailable>
     <WaveDelay>10</WaveDelay>
     <Difficulty>1</Difficulty>

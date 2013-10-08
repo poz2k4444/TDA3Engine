@@ -232,16 +232,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\Monsters\ant.png">
-      <Name>ant</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Monsters\ant_hit.png">
-      <Name>ant_hit</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Maps\Forest\Forest.xml">
@@ -256,8 +246,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Monsters\SlowAnt.xml">
-      <Name>SlowAnt</Name>
+    <Compile Include="Monsters\SlowAlien.xml">
+      <Name>SlowAlien</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
       <SubType>Designer</SubType>
@@ -280,8 +270,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Wave\VerySlowAnts.xml">
-      <Name>VerySlowAnts</Name>
+    <Compile Include="Wave\VerySlowAliens.xml">
+      <Name>VerySlowAliens</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
     </Compile>
@@ -290,6 +280,18 @@
     <Folder Include="Audio\" />
     <Folder Include="Textures\Help\" />
     <Folder Include="Video\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Monsters\alien.png">
+      <Name>alien</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Monsters\alien_hit.png">
+      <Name>alien_hit</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

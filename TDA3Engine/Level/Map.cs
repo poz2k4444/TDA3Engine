@@ -833,7 +833,7 @@ namespace TDA3Engine
                         Tile t = map.ActivePath[i, j];
                         if (t.TileCode == 0 || t.TileCode == 6 || t.TileCode == 8 || t.TileCode == 9) t.AddToAdjacencyList(GetTile(map, i - 1, j, t.TileCode));
                         if (t.TileCode == 0 || t.TileCode == 7 || t.TileCode == 8 || t.TileCode == 10) t.AddToAdjacencyList(GetTile(map, i, j - 1, t.TileCode));
-                        if (t.TileCode == 0 || t.TileCode == 7 || t.TileCode == 9 || t.TileCode == 11) t.AddToAdjacencyList(GetTile(map, i, j + 1, t.TileCode));
+                        if (t.TileCode == 0 || t.TileCode == 7 || t.TileCode == 9 || t.TileCode == 11 ) t.AddToAdjacencyList(GetTile(map, i, j + 1, t.TileCode));
                         if (t.TileCode == 0 || t.TileCode == 6 || t.TileCode == 10 || t.TileCode == 11) t.AddToAdjacencyList(GetTile(map, i + 1, j, t.TileCode));
                     }
                 }
