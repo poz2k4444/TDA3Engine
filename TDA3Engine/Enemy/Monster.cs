@@ -137,6 +137,10 @@ namespace TDA3Engine
         float deltahealth;
         float dottimer;
         float dottime;
+        float dostime;
+        float dostimer;
+        float speedOriginal;
+        bool DOSA = false;
         int dothealth;
 
 
@@ -160,6 +164,18 @@ namespace TDA3Engine
                     dothealth = 0;
                     dottime = 0.0f;
                     dottimer = 0.0f;
+                }
+            }
+
+            if (dostime > 0)
+            {
+                UpdateDOS(gameTime);
+                if (dostimer > dostime)
+                {
+                    Speed = speedOriginal;
+                    DOSA = false;
+                    dostime = 0.0f;
+                    dostimer = 0.0f;
                 }
             }
 
@@ -238,6 +254,33 @@ namespace TDA3Engine
             }
         }
 
+        private void UpdateDOS(GameTime gameTime)
+        {
+            float deltaseconds = (float)(gameTime.ElapsedGameTime.TotalSeconds * Session.singleton.Speed);
+            dostimer += deltaseconds;
+            deltahealth += dothealth * deltaseconds;
+            int damage = (int)deltahealth;
+            if (damage > 0)
+            {
+                Health -= damage;
+                deltahealth = deltahealth - damage;
+
+                if (Health <= 0)
+                {
+                    Wave.Remove(this);
+                    Die();
+                    Session.singleton.AddMoney(IsBoss ? (int)(Wave.MoneyPerKill * Wave.BossMoneyScalar) : Wave.MoneyPerKill);
+                    if (DieEvent != null)
+                        DieEvent(this, EventArgs.Empty);
+                }
+                else
+                {
+                    hittimer = 0.2f;
+                    hitDisplay = new Text(damage.ToString(), new Vector2(Rectangle.Right + 3, Rectangle.Top), new Vector2(Velocity.X, -Speed));
+                }
+            }
+        }
+
         internal void ApplyDOT(int damage, float time)
         {
             if (dothealth == 0 && dottime == 0)
@@ -246,6 +289,18 @@ namespace TDA3Engine
                 dothealth = damage;
                 dottime = time;
                 dottimer = 0.0f;
+            }
+        }
+
+        internal void ApplyDOS(float speedy, float time)
+        {
+            if (dostime == 0 && !DOSA)
+            {
+                DOSA = true;
+                speedOriginal = Speed;
+                Speed = (Speed*(1-speedy));
+                dostime = time;
+                dostimer = 0.0f;
             }
         }
 

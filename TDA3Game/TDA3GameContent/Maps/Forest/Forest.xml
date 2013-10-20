@@ -40,8 +40,12 @@
     <Endless>false</Endless>
     <TowersAvailable>
       <Item>BasicTower</Item>
+      <Item>TowerDoS</Item>
     </TowersAvailable>
     <WavesAvailable>
+      <Item>VerySlowAliens</Item>
+      <Item>VerySlowAliens</Item>
+      <Item>VerySlowAliens</Item>
       <Item>VerySlowAliens</Item>
     </WavesAvailable>
     <WaveDelay>10</WaveDelay>

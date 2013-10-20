@@ -381,22 +381,22 @@ namespace TDA3Engine
             Vector2 d = spriteFont.MeasureString(Session.HealthDisplay);
             StatsAndControls.Add("Lonches", new Text(Session.HealthDisplay, new Vector2(StatsAndControls.Dimensions.Right - d.X - padding, y)));
 
-            //y += (int)(d.Y + spriteFont.LineSpacing);
+            y += (int)(d.Y + spriteFont.LineSpacing);
 
-            //string bt = "Lanzar siguiente ola";
-            //Vector2 btdim = spriteFont.MeasureString(bt);
-            //Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
-            //Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
+            string bt = "Lanzar siguiente ola";
+            Vector2 btdim = spriteFont.MeasureString(bt);
+            Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
+            Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
 
-            //Vector2 bpos = new Vector2((int)(SelectedTower.Dimensions.Left + (tex.Width / 2.0f) +
-              //  (SelectedTower.Dimensions.Width - tex.Width) / 2.0f), (int)(y + (tex.Height / 2.0f)));
+            Vector2 bpos = new Vector2((int)(SelectedTower.Dimensions.Left + (tex.Width / 2.0f) +
+                (SelectedTower.Dimensions.Width - tex.Width) / 2.0f), (int)(y + (tex.Height / 2.0f)));
 
-            //Vector2 tpos = new Vector2((int)(bpos.X - tex.Width / 2.0f + padding),
-              //  (int)(y + (tex.Height - btdim.Y) / 2.0f));
+            Vector2 tpos = new Vector2((int)(bpos.X - tex.Width / 2.0f + padding),
+                (int)(y + (tex.Height - btdim.Y) / 2.0f));
 
-            //Button b = new Button(tex, bpos, new Text(bt, spriteFont, tpos), c, clickedTower);
-            //b.LeftClickEvent += new EventHandler(nextWave_LeftClick);
-            //StatsAndControls.Add("SiguienteOla", b);
+            Button b = new Button(tex, bpos, new Text(bt, spriteFont, tpos), c, clickedTower);
+            b.LeftClickEvent += new EventHandler(nextWave_LeftClick);
+            StatsAndControls.Add("SiguienteOla", b);
 
             //y += tex.Height + padding;
 
@@ -489,11 +489,11 @@ namespace TDA3Engine
         {
             MoneyAndTowers.GetText("Dinero").Value = Session.MoneyDisplay;
             MoneyAndTowers.GetText("Torres").Value = Session.TowersDisplay;
-            //Button lnw = StatsAndControls.GetButton("SiguienteOla");
-            //Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
-            //Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
-            //lnw.Texture = tex;
-            //lnw.SetColor(c);
+            Button lnw = StatsAndControls.GetButton("SiguienteOla");
+            Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
+            Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
+            lnw.Texture = tex;
+            lnw.SetColor(c);
 
             if (clickedTower != null)
             {

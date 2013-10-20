@@ -21,7 +21,8 @@ namespace TDA3Engine
     {
         Normal,
         AoE,
-        DoT
+        DoT,
+        DoS
     }
 
     public class Bullet
@@ -36,6 +37,8 @@ namespace TDA3Engine
                 output.Write(value.AoERadius);
                 output.Write(value.dotDamagePercentage);
                 output.Write(value.dotTime);
+                output.Write(value.decSpeed);
+                output.Write(value.dosTime);
                 output.Write(value.TextureAsset);
                 output.Write(value.ParticleAsset);
                 output.Write(value.Speed);
@@ -81,6 +84,20 @@ namespace TDA3Engine
 
         [ContentSerializer]
         public float dotTime
+        {
+            get;
+            private set;
+        }
+
+        [ContentSerializer]
+        public float dosTime
+        {
+            get;
+            private set;
+        }
+
+        [ContentSerializer]
+        public float decSpeed
         {
             get;
             private set;
@@ -252,6 +269,10 @@ namespace TDA3Engine
             {
                 m.ApplyDOT((int)(Owner.CurrentStatistics.Damage * dotDamagePercentage), dotTime);
             }
+            else if (Type == BulletType.DoS)
+            {
+                m.ApplyDOS(decSpeed, dosTime);
+            }
 
             ParticleSystem = new ParticleSystem();
             ParticleSystem.SystemTimer = Timer;
@@ -355,6 +376,8 @@ namespace TDA3Engine
                 b.AoERadius = input.ReadInt32();
                 b.dotDamagePercentage = input.ReadSingle();
                 b.dotTime = input.ReadSingle();
+                b.decSpeed = input.ReadSingle();
+                b.dosTime = input.ReadSingle();
                 b.TextureAsset = input.ReadString();
                 b.ParticleAsset = input.ReadString();
                 b.Speed = input.ReadSingle();
@@ -378,6 +401,8 @@ namespace TDA3Engine
             b.AoERadius = AoERadius;
             b.dotDamagePercentage = dotDamagePercentage;
             b.dotTime = dotTime;
+            b.decSpeed = decSpeed;
+            b.dosTime = dosTime;
             b.TextureAsset = TextureAsset;
             b.ParticleAsset = ParticleAsset;
             b.Speed = Speed;

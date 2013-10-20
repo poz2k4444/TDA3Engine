@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="TDA3Engine.Tower">
+    <Name>Disminuye velocidad un periodo de tiempo</Name>
+    <Description>Cuesta poco mas</Description>
+    <ThumbnailAsset>bomb_thumb</ThumbnailAsset>
+    <TextureAsset>bombtower</TextureAsset>
+    <RadiusTextureAsset>radius</RadiusTextureAsset>
+    <Cost>150</Cost>
+    <Level>1</Level>
+    <MaxLevel>5</MaxLevel>
+    <InitialStatistics>
+      <Health>100</Health>
+      <Damage>8</Damage>
+      <Speed>0.7</Speed>
+      <Accuracy>1</Accuracy>
+      <CriticalChance>1</CriticalChance>
+      <CriticalHitScalar>0.5</CriticalHitScalar>
+      <Radius>3</Radius>
+    </InitialStatistics>
+    <UpgradeStatistics>
+      <HealthIncrease>20</HealthIncrease>
+      <DamageIncrease>12</DamageIncrease>
+      <SpeedIncrease>0.2</SpeedIncrease>
+      <AccuracyIncrease>1</AccuracyIncrease>
+      <CriticalChanceIncrease>1</CriticalChanceIncrease>
+      <CriticalHitScalarIncrease>0.5</CriticalHitScalarIncrease>
+      <RadiusIncrease>1</RadiusIncrease>
+    </UpgradeStatistics>
+    <BulletAsset>DoS</BulletAsset>
+    <SellScalar>0.5</SellScalar>
+  </Asset>
+</XnaContent>
