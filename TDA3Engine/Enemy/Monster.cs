@@ -150,10 +150,12 @@ namespace TDA3Engine
         float dottime;
         float dostime;
         float dostimer;
+        float upgradetime;
+        float upgradetimer;
         float speedOriginal;
         bool DOSA = false;
         int dothealth;
-
+        TypeElement tipoAnterior;
 
         public event EventHandler DieEvent;
         public event EventHandler HitEvent;
@@ -187,6 +189,17 @@ namespace TDA3Engine
                     DOSA = false;
                     dostime = 0.0f;
                     dostimer = 0.0f;
+                }
+            }
+
+            if (upgradetime > 0)
+            {
+                UpdateUpgrade(gameTime);
+                if (upgradetimer > upgradetime)
+                {
+                    Type = tipoAnterior;
+                    upgradetime = 0.0f;
+                    upgradetimer = 0.0f;
                 }
             }
 
@@ -332,22 +345,61 @@ namespace TDA3Engine
             Wave = w;
         }
 
+        internal void ApplyUpgrade(TypeElement ta, TypeElement tn)
+        {
+            if (upgradetime == 0)
+            {
+                upgradetime = 2;
+                upgradetimer = 0.0f;
+                tipoAnterior = ta;
+                Type = tn;
+            }
+        }
+
+        private void UpdateUpgrade(GameTime gameTime)
+        {
+            float deltaseconds = (float)(gameTime.ElapsedGameTime.TotalSeconds * Session.singleton.Speed);
+            upgradetimer += deltaseconds;
+        }
+
         public void hit(Bullet bullet, Tower Owner)
         {
             //AudioManager.singleton.PlaySound(HitCueName);
             if (bullet.BType == TypeElement.Armor && Type == TypeElement.Armor)
             {
-                damage(Owner, 1);
+                if (Owner.upgraded)
+                {
+                    Type = TypeElement.Normal;
+                    damage(Owner, 1);
+                }
+                else
+                {
+                    damage(Owner, 1);
+                }
             }
 
             if (bullet.BType == TypeElement.Flying && Type == TypeElement.Flying)
             {
-                damage(Owner, 1);
+                if (Owner.upgraded)
+                {
+                    ApplyUpgrade(Type, TypeElement.Normal);
+                    damage(Owner, 1);
+                }
+                else
+                {
+                    damage(Owner, 1);
+                }
             }
             
             if (bullet.BType == TypeElement.Normal && Type == TypeElement.Normal)
             {
-                damage(Owner, 1);
+                if (Owner.upgraded)
+                {
+                    damage(Owner, 5);
+                }
+                else {
+                    damage(Owner, 1);
+                }
             }
 
             if (bullet.BType == TypeElement.Terrain && Type == TypeElement.Terrain)
@@ -355,7 +407,7 @@ namespace TDA3Engine
                 damage(Owner, 1);
             }
             
-           
+          
         }
 
         public void damage(Tower Owner, int multiplier)
@@ -372,7 +424,7 @@ namespace TDA3Engine
             else
             {
                 hittimer = 0.4f;
-                hitDisplay = new Text(Owner.CurrentStatistics.Damage.ToString(), new Vector2(Rectangle.Right + 3, Rectangle.Top), new Vector2(Velocity.X, -Speed));
+                hitDisplay = new Text((Owner.CurrentStatistics.Damage*multiplier).ToString(), new Vector2(Rectangle.Right + 3, Rectangle.Top), new Vector2(Velocity.X, -Speed));
             }
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

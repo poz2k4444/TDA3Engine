@@ -178,7 +178,7 @@ namespace TDA3Engine
             {
                 ActivePlayer.Money -= (uint)t.UpgradeCost;
                 MoneyDisplay = String.Format("Dinero Disponible: {0}", ActivePlayer.Money.ToString());
-                t.Upgrade();
+                t.UpgradeBuff();
             }
         }
 

@@ -124,6 +124,8 @@ namespace TDA3Engine
         }
 
         int level;
+        float bufftime;
+        float bufftimer;
 
         [ContentSerializer]
         public int Level
@@ -203,6 +205,13 @@ namespace TDA3Engine
 
         [ContentSerializerIgnore]
         public Bullet bulletBase
+        {
+            get;
+            private set;
+        }
+
+        [ContentSerializerIgnore]
+        public bool upgraded
         {
             get;
             private set;
@@ -319,6 +328,8 @@ namespace TDA3Engine
 
             bulletBase.Initialize(map, contentManager);
 
+            upgraded = false;
+
             timer = CurrentStatistics.Speed;
 
             Initialized = true;
@@ -353,8 +364,31 @@ namespace TDA3Engine
             Level = level + 1;
         }
 
+        public void UpgradeBuff()
+        {
+            upgraded = true;
+            bufftime = 2;
+        }
+
+        private void UpdateBuff(GameTime gameTime)
+        {
+            float deltaseconds = (float)(gameTime.ElapsedGameTime.TotalSeconds * Session.singleton.Speed);
+            bufftimer += deltaseconds;
+
+        }
+
         public void Update(GameTime gameTime, Mouse activeMouse)
         {
+            if (bufftime > 0)
+            {
+                UpdateBuff(gameTime);
+                if (bufftimer > bufftime)
+                {
+                    upgraded = false;
+                    bufftimer = 0.0f;
+                    bufftime = 0.0f;
+                }
+            }
             if (IsPlaced) PlacedTime += (float)(gameTime.ElapsedGameTime.TotalSeconds * Session.singleton.Speed);
             if (timer > 0)
             {

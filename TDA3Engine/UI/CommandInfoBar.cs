@@ -228,7 +228,7 @@ namespace TDA3Engine
             {
                 int pb = AddUpgradeButton(price.Rectangle.Bottom + padding);
                 //AddSellButton(pb + padding);
-                AddSellButton(padding);
+                //AddSellButton(padding);
             }
             else
             {
@@ -248,7 +248,7 @@ namespace TDA3Engine
             cb.LeftClickEvent += new EventHandler(cancelButton_LeftClick);
             SelectedTower.Add("Cancel", cb);
         }
-
+        /*
         private void AddSellButton(int y)
         {
             Button b = null;
@@ -264,7 +264,7 @@ namespace TDA3Engine
             b.LeftClickEvent += new EventHandler(sellTower_LeftClick);
             SelectedTower.Add("SellTower", b);
         }
-
+        */
         private int AddUpgradeButton(int y)
         {
             Button b = null;
