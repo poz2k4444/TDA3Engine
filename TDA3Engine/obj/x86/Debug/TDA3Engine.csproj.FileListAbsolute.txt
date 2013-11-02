@@ -1,0 +1,6 @@
+Z:\Repos\Games\TDA3Engine\TDA3Engine\bin\x86\Debug\TDA3Engine.dll
+Z:\Repos\Games\TDA3Engine\TDA3Engine\bin\x86\Debug\TDA3Engine.pdb
+Z:\Repos\Games\TDA3Engine\TDA3Engine\bin\x86\Debug\ParticleSystem.dll
+Z:\Repos\Games\TDA3Engine\TDA3Engine\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+Z:\Repos\Games\TDA3Engine\TDA3Engine\obj\x86\Debug\TDA3Engine.dll
+Z:\Repos\Games\TDA3Engine\TDA3Engine\obj\x86\Debug\TDA3Engine.pdb
