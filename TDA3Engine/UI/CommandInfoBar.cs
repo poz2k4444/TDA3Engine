@@ -94,10 +94,10 @@ namespace TDA3Engine
 
         void Session_MoneyIncreased(object sender, EventArgs e)
         {
-            Button bt = SelectedTower.GetButton("BuyTower");
-            //Button ut = SelectedTower.GetButton("UpgradeTower");
+            //Button bt = SelectedTower.GetButton("BuyTower");
+            Button ut = SelectedTower.GetButton("UpgradeTower");
 
-            if (bt != null)
+            /*if (bt != null)
             {
                 if (clickedTower != null && clickedTower.Cost <= Session.ActivePlayer.Money)
                 {
@@ -112,7 +112,7 @@ namespace TDA3Engine
                 }
             }
 
-            /*else if (ut != null)
+            else */if (ut != null)
             {
                 if (clickedTower != null && clickedTower.UpgradeCost <= Session.ActivePlayer.Money && clickedTower.Level + 1 < clickedTower.MaxLevel)
                 {
@@ -125,7 +125,7 @@ namespace TDA3Engine
                         ut.Activate();
                     }
                 }
-            }*/
+            }
         }
 
         void s_HealthDecreased(object sender, EventArgs e)
@@ -286,7 +286,7 @@ namespace TDA3Engine
             Button b = null;
             if (clickedTower.UpgradeCost <= Session.ActivePlayer.Money && clickedTower.Level + 1 < clickedTower.MaxLevel)
             {
-                string bt = String.Format("Upgrade Tower (Costs {0})", clickedTower.UpgradeCost);
+                string bt = String.Format("Mejorar (Costs {0})", clickedTower.UpgradeCost);
                 Vector2 btdim = spriteFont.MeasureString(bt);
                 Vector2 bpos = new Vector2((int)(SelectedTower.Dimensions.Left + (Session.Map.SmallNormalButtonTexture.Width / 2.0f) +
                     (SelectedTower.Dimensions.Width - Session.Map.SmallNormalButtonTexture.Width) / 2.0f), (int)(y + (Session.Map.SmallNormalButtonTexture.Height / 2.0f)));
@@ -300,7 +300,7 @@ namespace TDA3Engine
             }
             else
             {
-                string bt = String.Format("Upgrade Tower (Costs {0})", clickedTower.UpgradeCost);
+                string bt = String.Format("Mejorar (Costs {0})", clickedTower.UpgradeCost);
                 Vector2 btdim = spriteFont.MeasureString(bt);
 
                 Vector2 bpos = new Vector2((int)(SelectedTower.Dimensions.Left + (Session.Map.SmallErrorButtonTexture.Width / 2.0f) +
@@ -311,7 +311,7 @@ namespace TDA3Engine
 
                 b = new Button(Session.Map.SmallErrorButtonTexture, bpos, new Text(bt, spriteFont, tpos), Session.Map.ErrorColor, clickedTower);
                 b.Deactivate();
-                SelectedTower.Add("UpgradeTower", b);
+                SelectedTower.Add("Mejorar", b);
             }
             return (int)(b.Position.Y - b.Origin.Y) + b.Texture.Height;
         }
@@ -359,7 +359,6 @@ namespace TDA3Engine
                 clickedTower = null;
             }
         }
-
         void powerTower_LeftClick(object sender, EventArgs e)
         {
             if(PoderesTotales>0)
@@ -374,10 +373,10 @@ namespace TDA3Engine
                 Tower t = b.StoredObject as Tower;
                 Session.UpgradeTower(t);
                 b.ButtonText.Value = String.Format("Mejorar (Cuesta {0})", clickedTower.UpgradeCost);
-                SelectedTower.GetButton("SellTower").ButtonText.Value = String.Format("Vender (Recibes {0})", (int)(clickedTower.TotalCost * clickedTower.SellScalar));
-                SelectedTower.GetText("Stats").Value = clickedTower.CurrentStatistics.ToShortString();
-                SelectedTower.GetText("Price").Value = String.Format("Precio: {0}", clickedTower.TotalCost);
-                SelectedTower.GetText("TowerName").Value = clickedTower.Name + " " + (clickedTower.Level + 1).ToString();
+                //SelectedTower.GetButton("SellTower").ButtonText.Value = String.Format("Vender (Recibes {0})", (int)(clickedTower.TotalCost * clickedTower.SellScalar));
+                //SelectedTower.GetText("Stats").Value = clickedTower.CurrentStatistics.ToShortString();
+                //SelectedTower.GetText("Price").Value = String.Format("Precio: {0}", clickedTower.TotalCost);
+                //SelectedTower.GetText("TowerName").Value = clickedTower.Name + " " + (clickedTower.Level + 1).ToString();
 
                 if (clickedTower.UpgradeCost > Session.ActivePlayer.Money || clickedTower.Level == clickedTower.MaxLevel)
                 {
