@@ -48,7 +48,7 @@
       <Item>VerySlowAliens</Item>
       <Item>VerySlowAliens</Item>
     </WavesAvailable>
-    <WaveDelay>10</WaveDelay>
+    <WaveDelay>1</WaveDelay>
     <Difficulty>1</Difficulty>
     <Money>300</Money>
     <ForeColorArray>124 189 70 255</ForeColorArray>

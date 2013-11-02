@@ -532,7 +532,7 @@ namespace TDA3Engine
             {
                 if (Timer > 0)
                 {
-                    Timer -= (float)gameTime.ElapsedGameTime.TotalSeconds * Session.singleton.Speed;
+                    //Timer -= (float)gameTime.ElapsedGameTime.TotalSeconds * Session.singleton.Speed;
                 }
                 else
                 {
