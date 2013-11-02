@@ -59,8 +59,9 @@ namespace TDA3Engine
         SpriteFont spriteFont;
 
         Tower clickedTower;
+        int ElapsedTime = 15;
 
-        KeyboardState oldKeyboardState;
+        KeyboardState oldKeyboardState = Keyboard.GetState();
 
         private string respuesta;
 
@@ -558,12 +559,79 @@ namespace TDA3Engine
                     b.Value.Update(gameTime, Session.UI.mouse);
                 }
             }
-
+            
             foreach (var b in StatsAndControls.Buttons)
             {
                 b.Value.Update(gameTime, Session.UI.mouse);
             }
-
+            
+            if (oldKeyboardState.IsKeyDown(Keys.Back) && respuesta.Length > 0 && ElapsedTime <= 0) 
+            {
+                respuesta = respuesta.Remove(respuesta.Length - 1);
+                ElapsedTime = 15;
+            }
+            if (respuesta.Length <= 2)
+            {
+                if (oldKeyboardState.IsKeyDown(Keys.D0) && ElapsedTime <= 0)
+                {
+                    respuesta += "0";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D1) && ElapsedTime <= 0)
+                {
+                    respuesta += "1";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D2) && ElapsedTime <= 0)
+                {
+                    respuesta += "2";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D3) && ElapsedTime <= 0)
+                {
+                    respuesta += "3";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D4) && ElapsedTime <= 0)
+                {
+                    respuesta += "4";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D5) && ElapsedTime <= 0)
+                {
+                    respuesta += "5";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D6) && ElapsedTime <= 0)
+                {
+                    respuesta += "6";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D7) && ElapsedTime <= 0)
+                {
+                    respuesta += "7";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D8) && ElapsedTime <= 0)
+                {
+                    respuesta += "8";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D9) && ElapsedTime <= 0)
+                {
+                    respuesta += "9";
+                    ElapsedTime = 15;
+                }
+            }
+            else if (oldKeyboardState.IsKeyDown(Keys.Enter) && ElapsedTime <= 0)
+            {
+                //Validar respuesta
+                ElapsedTime = 15;
+            }
+            ElapsedTime--;
+            
+            oldKeyboardState = Keyboard.GetState();
+            /*
             if(ChecaEnter())
                 respuesta = "";
             if (ChecaTecla(Keys.D0)) 
@@ -586,6 +654,7 @@ namespace TDA3Engine
                 respuesta += "8";
             if (ChecaTecla(Keys.D9)) 
                 respuesta += "9";
+             */
 
             //Button isb = StatsAndControls.GetButton("IncreaseSpeed");
             //Button dsb = StatsAndControls.GetButton("DecreaseSpeed");
