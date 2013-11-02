@@ -41,6 +41,7 @@
     <TowersAvailable>
       <Item>BasicTower</Item>
       <Item>TowerDoS</Item>
+      <Item>ArmorTower</Item>
     </TowersAvailable>
     <WavesAvailable>
       <Item>VerySlowAliens</Item>

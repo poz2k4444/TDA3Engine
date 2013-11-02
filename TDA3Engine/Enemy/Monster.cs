@@ -364,55 +364,82 @@ namespace TDA3Engine
 
         public void hit(Bullet bullet, Tower Owner)
         {
+            switch(bullet.BType){
+                case TypeElement.Armor:
+                    switch (Type){
+                        case TypeElement.Armor:
+                            if (Owner.upgraded)
+                            {
+                                Type = TypeElement.Normal;
+                                damage(Owner, 1);
+                            }
+                            else
+                            {
+                                damage(Owner, 1);
+                            }
+                            break;
+                        case TypeElement.Flying:
+                            damage(Owner, 0);
+                            break;
+                        case TypeElement.Normal:
+                            damage(Owner, 1.2f);
+                            break;
+                    }
+                    break;
+                case TypeElement.Flying:
+                    switch (Type)
+                    {
+                        case TypeElement.Armor:
+                            damage(Owner, 0.2f);
+                            break;
+                        case TypeElement.Flying:
+                            if (Owner.upgraded)
+                            {
+                                ApplyUpgrade(Type, TypeElement.Normal);
+                                damage(Owner, 1);
+                            }
+                            else
+                            {
+                                damage(Owner, 1);
+                            }
+                            break;
+                        case TypeElement.Normal:
+                            damage(Owner, 0.8f);
+                            break;
+                    }
+                    break;
+                case TypeElement.Normal:
+                    switch (Type)
+                    {
+                        case TypeElement.Armor:
+                            damage(Owner, 0.2f);
+                            break;
+                        case TypeElement.Flying:
+                            damage(Owner, 0);
+                            break;
+                        case TypeElement.Normal:
+                            if (Owner.upgraded)
+                            {
+                                damage(Owner, 5);
+                            }
+                            else
+                            {
+                                damage(Owner, 1);
+                            }
+                            break;
+                    }
+                    break;
+            }
             //AudioManager.singleton.PlaySound(HitCueName);
-            if (bullet.BType == TypeElement.Armor && Type == TypeElement.Armor)
-            {
-                if (Owner.upgraded)
-                {
-                    Type = TypeElement.Normal;
-                    damage(Owner, 1);
-                }
-                else
-                {
-                    damage(Owner, 1);
-                }
-            }
-
-            if (bullet.BType == TypeElement.Flying && Type == TypeElement.Flying)
-            {
-                if (Owner.upgraded)
-                {
-                    ApplyUpgrade(Type, TypeElement.Normal);
-                    damage(Owner, 1);
-                }
-                else
-                {
-                    damage(Owner, 1);
-                }
-            }
-            
-            if (bullet.BType == TypeElement.Normal && Type == TypeElement.Normal)
-            {
-                if (Owner.upgraded)
-                {
-                    damage(Owner, 5);
-                }
-                else {
-                    damage(Owner, 1);
-                }
-            }
-
             if (bullet.BType == TypeElement.Terrain && Type == TypeElement.Terrain)
             {
                 damage(Owner, 1);
             }
-            
-          
         }
 
-        public void damage(Tower Owner, int multiplier)
+        public void damage(Tower Owner, float multiplier)
         {
-            Health -= Owner.CurrentStatistics.Damage * multiplier;
+            Health -= Convert.ToInt32(Owner.CurrentStatistics.Damage * multiplier);
             if (Health <= 0)
             {
                 Wave.Remove(this);
