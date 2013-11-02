@@ -34,6 +34,7 @@ namespace TDA3Engine
             protected override void Write(ContentWriter output, Bullet value)
             {
                 output.Write(value.Type.ToString());
+                output.Write(value.BType.ToString());
                 output.Write(value.AoERadius);
                 output.Write(value.dotDamagePercentage);
                 output.Write(value.dotTime);
@@ -63,6 +64,13 @@ namespace TDA3Engine
 
         [ContentSerializer]
         public BulletType Type
+        {
+            get;
+            private set;
+        }
+
+        [ContentSerializer]
+        public TypeElement BType
         {
             get;
             private set;
@@ -373,6 +381,7 @@ namespace TDA3Engine
                 Bullet b = new Bullet();
 
                 b.Type = (BulletType)Enum.Parse(typeof(BulletType), input.ReadString());
+                b.BType = (TypeElement)Enum.Parse(typeof(TypeElement), input.ReadString());
                 b.AoERadius = input.ReadInt32();
                 b.dotDamagePercentage = input.ReadSingle();
                 b.dotTime = input.ReadSingle();
@@ -398,6 +407,7 @@ namespace TDA3Engine
             Bullet b = new Bullet();
 
             b.Type = Type;
+            b.BType = BType;
             b.AoERadius = AoERadius;
             b.dotDamagePercentage = dotDamagePercentage;
             b.dotTime = dotTime;

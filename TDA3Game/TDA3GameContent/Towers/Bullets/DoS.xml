@@ -2,6 +2,7 @@
 <XnaContent>
   <Asset Type="TDA3Engine.Bullet">
     <Type>DoS</Type>
+    <BType>Flying</BType>
     <AoERadius>0</AoERadius>
     <dotDamagePercentage>0</dotDamagePercentage>
     <dotTime>0</dotTime>

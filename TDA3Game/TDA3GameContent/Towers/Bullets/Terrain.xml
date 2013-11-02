@@ -2,7 +2,7 @@
 <XnaContent>
   <Asset Type="TDA3Engine.Bullet">
     <Type>Normal</Type>
-    <BType>Normal</BType>
+    <BType>Terrain</BType>
     <AoERadius>0</AoERadius>
     <dotDamagePercentage>0</dotDamagePercentage>
     <dotTime>0</dotTime>

@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
   <Asset Type="TDA3Engine.Monster">
-    <Name>Alien</Name>
+    <Name>Alien2</Name>
     <Description/>
     <Alpha>1.0</Alpha>
     <Speed>50</Speed>
-    <Type>Normal</Type>
+    <Type>Flying</Type>
     <Health>150</Health>
     <TextureAsset>alien</TextureAsset>
     <HitTextureAsset>alien_hit</HitTextureAsset>

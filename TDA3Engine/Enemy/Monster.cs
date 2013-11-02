@@ -10,6 +10,9 @@ using Microsoft.Xna.Framework;
 
 namespace TDA3Engine
 {
+    public enum TypeElement { 
+        Flying, Terrain, Armor, Normal 
+    }
     public class Monster : GameplayObject
     {
         [ContentTypeWriter]
@@ -26,6 +29,7 @@ namespace TDA3Engine
             protected override void Write(ContentWriter output, Monster value)
             {
                 output.WriteRawObject<GameplayObject>(value as GameplayObject, gameobjectWriter);
+                output.Write(value.Type.ToString());
                 output.Write(value.Health);
                 output.Write(value.TextureAsset);
                 output.Write(value.HitTextureAsset);
@@ -37,6 +41,13 @@ namespace TDA3Engine
             {
                 return typeof(Monster.MonsterReader).AssemblyQualifiedName;
             }
+        }
+
+        [ContentSerializer]
+        public TypeElement Type
+        {
+            get;
+            private set;
         }
 
         [ContentSerializer]
@@ -324,7 +335,32 @@ namespace TDA3Engine
         public void hit(Bullet bullet, Tower Owner)
         {
             //AudioManager.singleton.PlaySound(HitCueName);
-            Health -= Owner.CurrentStatistics.Damage;
+            if (bullet.BType == TypeElement.Armor && Type == TypeElement.Armor)
+            {
+                damage(Owner, 1);
+            }
+
+            if (bullet.BType == TypeElement.Flying && Type == TypeElement.Flying)
+            {
+                damage(Owner, 1);
+            }
+            
+            if (bullet.BType == TypeElement.Normal && Type == TypeElement.Normal)
+            {
+                damage(Owner, 1);
+            }
+
+            if (bullet.BType == TypeElement.Terrain && Type == TypeElement.Terrain)
+            {
+                damage(Owner, 1);
+            }
+            
+           
+        }
+
+        public void damage(Tower Owner, int multiplier)
+        {
+            Health -= Owner.CurrentStatistics.Damage * multiplier;
             if (Health <= 0)
             {
                 Wave.Remove(this);
@@ -339,7 +375,6 @@ namespace TDA3Engine
                 hitDisplay = new Text(Owner.CurrentStatistics.Damage.ToString(), new Vector2(Rectangle.Right + 3, Rectangle.Top), new Vector2(Velocity.X, -Speed));
             }
         }
-
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (Delay <= 0)
@@ -360,6 +395,7 @@ namespace TDA3Engine
                 Monster result = new Monster();
 
                 input.ReadRawObject<GameplayObject>(result as GameplayObject);
+                result.Type = (TypeElement)Enum.Parse(typeof(TypeElement), input.ReadString());
                 result.Health = input.ReadInt32();
                 result.MaxHealth = result.Health;
                 result.TextureAsset = input.ReadString();
@@ -380,6 +416,7 @@ namespace TDA3Engine
             Monster result = new Monster();
 
             result.Name = Name;
+            result.Type = Type;
             result.Description = Description;
             result.Alpha = Alpha;
             result.Speed = Speed;
