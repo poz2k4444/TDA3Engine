@@ -626,6 +626,7 @@ namespace TDA3Engine
                     respuesta += "9";
                     ElapsedTime = 15;
                 }
+
             }
             if (oldKeyboardState.IsKeyDown(Keys.Enter) && ElapsedTime <= 0)
             {
