@@ -218,22 +218,22 @@ namespace TDA3Engine
             Image icon = new Image(clickedTower.Texture, new Vector2(SelectedTower.Dimensions.Left, SelectedTower.Dimensions.Top + padding));
             SelectedTower.Add("TowerIcon", icon);
 
-            //SelectedTower.Add("TowerName", new Text(clickedTower.Name + " " + (clickedTower.Level + 1).ToString(), spriteFont, new Vector2(icon.Rectangle.Right + padding, SelectedTower.Dimensions.Top + padding)));
-            //SelectedTower.Add("TowerDescription", new Text(clickedTower.Description, spriteFont, new Vector2(icon.Rectangle.Right + padding, SelectedTower.Dimensions.Top + padding + spriteFont.LineSpacing)));
+            SelectedTower.Add("TowerName", new Text(clickedTower.Name + " " + (clickedTower.Level + 1).ToString(), spriteFont, new Vector2(icon.Rectangle.Right + padding, SelectedTower.Dimensions.Top + padding)));
+            SelectedTower.Add("TowerDescription", new Text(clickedTower.Description, spriteFont, new Vector2(icon.Rectangle.Right + padding, SelectedTower.Dimensions.Top + padding + spriteFont.LineSpacing)));
 
             Text stats = new Text(clickedTower.CurrentStatistics.ToShortString(), spriteFont, new Vector2(SelectedTower.Dimensions.Left + padding, icon.Rectangle.Bottom));
-            //SelectedTower.Add("Stats", stats);
+            SelectedTower.Add("Stats", stats);
 
             Text specials = new Text(String.Format("Specials: {0}", t.bulletBase.Type == BulletType.Normal ? "None" : t.bulletBase.Type.ToString()),
                 spriteFont, new Vector2(SelectedTower.Dimensions.Left + padding, stats.Rectangle.Bottom));
-            //SelectedTower.Add("Specials", specials);
+            SelectedTower.Add("Specials", specials);
 
             Text price = new Text(String.Format("Price: {0}", clickedTower.TotalCost), spriteFont, new Vector2(SelectedTower.Dimensions.Left + padding, specials.Rectangle.Bottom));
-            //SelectedTower.Add("Price", price);
+            SelectedTower.Add("Price", price);
 
             if (t.IsPlaced)
             {
-                //int pb = AddUpgradeButton(price.Rectangle.Bottom + padding);
+                int pb = AddUpgradeButton(price.Rectangle.Bottom + padding);
                 //AddSellButton(pb + padding);
                 AddSellButton(padding);
             }
@@ -259,6 +259,7 @@ namespace TDA3Engine
         private void AddSellButton(int y)
         {
             Button b = null;
+            Button c = null;
             string st = String.Format("Vender Torre (Recibe {0})", (int)(clickedTower.TotalCost * clickedTower.SellScalar));
             Vector2 stdim = spriteFont.MeasureString(st);
             Vector2 bpos = new Vector2((int)(SelectedTower.Dimensions.Left + (Session.Map.SmallNormalButtonTexture.Width / 2.0f) +
@@ -266,13 +267,21 @@ namespace TDA3Engine
 
             Vector2 tpos = new Vector2((int)(bpos.X - Session.Map.SmallNormalButtonTexture.Width / 2.0f + padding),
                 (int)(y + (Session.Map.SmallNormalButtonTexture.Height - stdim.Y) / 2.0f));
-
+            tpos.Y = 425;
+            bpos.Y = tpos.Y-2;
+            tpos.Y = 410;
             b = new Button(Session.Map.SmallNormalButtonTexture, bpos, new Text(st, spriteFont, tpos), Session.Map.ForeColor, clickedTower);
+            tpos.Y = 390;
+            bpos.Y = tpos.Y - 2;
+            tpos.Y = 375;
+            c = new Button(Session.Map.SmallNormalButtonTexture, bpos, new Text("Poder", spriteFont, tpos), Session.Map.ForeColor, clickedTower);
             b.LeftClickEvent += new EventHandler(sellTower_LeftClick);
+            c.LeftClickEvent += new EventHandler(powerTower_LeftClick);
             SelectedTower.Add("SellTower", b);
+            SelectedTower.Add("PowerTower", c);
         }
 
-        /*private int AddUpgradeButton(int y)
+        private int AddUpgradeButton(int y)
         {
             Button b = null;
             if (clickedTower.UpgradeCost <= Session.ActivePlayer.Money && clickedTower.Level + 1 < clickedTower.MaxLevel)
@@ -305,7 +314,7 @@ namespace TDA3Engine
                 SelectedTower.Add("UpgradeTower", b);
             }
             return (int)(b.Position.Y - b.Origin.Y) + b.Texture.Height;
-        }*/
+        }
 
         private void AddPurchaseButton(int y)
         {
@@ -351,7 +360,13 @@ namespace TDA3Engine
             }
         }
 
-        /*void upgradeTower_LeftClick(object sender, EventArgs e)
+        void powerTower_LeftClick(object sender, EventArgs e)
+        {
+            if(PoderesTotales>0)
+                PoderesTotales--;
+        }
+
+        void upgradeTower_LeftClick(object sender, EventArgs e)
         {
             Button b = sender as Button;
             if (b != null)
@@ -372,7 +387,7 @@ namespace TDA3Engine
                     b.Deactivate();
                 }
             }
-        }*/
+        }
 
         void buyTower_LeftClick(object sender, EventArgs e)
         {
@@ -421,6 +436,7 @@ namespace TDA3Engine
 
             TablasMultiplicar.Add("Pregunta", new Text("0x0", new Vector2(1017,607)));
             TablasMultiplicar.Add("Respuesta", new Text("0", new Vector2(1117, 607)));
+            TablasMultiplicar.Add("Poder", new Text(""+PoderesTotales, new Vector2(1000, 501)));
             CambiarTabla();
 
             //x += tex.Width;
@@ -523,6 +539,7 @@ namespace TDA3Engine
             MoneyAndTowers.GetText("Dinero").Value = Session.MoneyDisplay;
             MoneyAndTowers.GetText("Torres").Value = Session.TowersDisplay;
             TablasMultiplicar.GetText("Respuesta").Value = respuesta;
+            TablasMultiplicar.GetText("Poder").Value = "Poderes: "+PoderesTotales;
             Button lnw = StatsAndControls.GetButton("SiguienteOla");
             Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
             Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
@@ -611,9 +628,10 @@ namespace TDA3Engine
             if (oldKeyboardState.IsKeyDown(Keys.Enter) && ElapsedTime <= 0)
             {
                 //Validar respuesta
-                if (respuesta!="correcto" && respuesta!="falso" && RespCorrecta == int.Parse(respuesta))
+                if (respuesta != "correcto" && respuesta != "falso" && respuesta != "" && RespCorrecta == int.Parse(respuesta))
                 {
-                    PoderesTotales++;
+                    if(PoderesTotales<5)
+                        PoderesTotales++;
                     respuesta = "correcto";
                 }
                 else
