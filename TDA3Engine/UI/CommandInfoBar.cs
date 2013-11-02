@@ -60,6 +60,8 @@ namespace TDA3Engine
 
         Tower clickedTower;
         int ElapsedTime = 15;
+        int PoderesTotales = 0;
+        int RespCorrecta = 0;
 
         KeyboardState oldKeyboardState = Keyboard.GetState();
 
@@ -421,6 +423,8 @@ namespace TDA3Engine
             Random random = new Random();
             int izqui = random.Next(1, 9);
             int dere = random.Next(1, 9);
+            RespCorrecta = izqui * dere;
+            
             tex = Session.Map.LargeNormalButtonTexture;
             int x = (int)(SelectedTower.Dimensions.Left + (tex.Width / 2.0f) + padding);
             c = Session.Map.ForeColor;
@@ -623,9 +627,18 @@ namespace TDA3Engine
                     ElapsedTime = 15;
                 }
             }
-            else if (oldKeyboardState.IsKeyDown(Keys.Enter) && ElapsedTime <= 0)
+            if (oldKeyboardState.IsKeyDown(Keys.Enter) && ElapsedTime <= 0)
             {
                 //Validar respuesta
+                if (RespCorrecta == int.Parse(respuesta))
+                {
+                    PoderesTotales++;
+                    respuesta = "bien :D";
+                }
+                else
+                {
+                    respuesta = "mal .i.";
+                }
                 ElapsedTime = 15;
             }
             ElapsedTime--;
