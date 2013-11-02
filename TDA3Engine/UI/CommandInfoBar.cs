@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace TDA3Engine
 {
@@ -52,6 +53,12 @@ namespace TDA3Engine
         SpriteFont spriteFont;
 
         Tower clickedTower;
+
+        KeyboardState oldKeyboardState;
+
+        private string respuesta;
+
+        private bool presionado = false;
 
         public CommandInfoBar(Session s, Rectangle r, GraphicsDevice gd)
         {
@@ -398,12 +405,44 @@ namespace TDA3Engine
             b.LeftClickEvent += new EventHandler(nextWave_LeftClick);
             StatsAndControls.Add("SiguienteOla", b);
 
-            //y += tex.Height + padding;
 
-            //tex = Session.Map.LargeNormalButtonTexture;
-            //int x = (int)(SelectedTower.Dimensions.Left + (tex.Width / 2.0f) + padding);
-            //c = Session.Map.ForeColor;
-            //bt = "Pause";
+            ////////////////////////////////////// AQUI IRÁ LO DE MULTIPLICAR
+            y += tex.Height + padding;
+
+
+            Random random = new Random();
+            int izqui = random.Next(1, 9);
+            int dere = random.Next(1, 9);
+            tex = Session.Map.LargeNormalButtonTexture;
+            int x = (int)(SelectedTower.Dimensions.Left + (tex.Width / 2.0f) + padding);
+            c = Session.Map.ForeColor;
+            bt = izqui + " X " + dere;
+            btdim = spriteFont.MeasureString(bt);
+            bpos = new Vector2(x, (int)(y + (tex.Height / 2.0f)));
+
+            tpos = new Vector2((int)(bpos.X - tex.Width / 2.0f + padding),
+                (int)(y + (tex.Height - btdim.Y) / 2.0f));
+
+            b = new Button(tex, bpos, new Text(bt, spriteFont, tpos), c, null);
+            //b.LeftClickEvent += new EventHandler(pause_LeftClick);
+            StatsAndControls.Add("Multiplicar", b);
+
+            
+            x += tex.Width;
+            respuesta = "";
+            bt = respuesta;
+            btdim = spriteFont.MeasureString(bt);
+            bpos = new Vector2(x, (int)(y + (tex.Height / 2.0f)));
+
+            tpos = new Vector2((int)(bpos.X - tex.Width / 2.0f + padding),
+                (int)(y + (tex.Height - btdim.Y) / 2.0f));
+
+            b = new Button(tex, bpos, new Text(bt, spriteFont, tpos), c, null);
+            b.LeftClickEvent += new EventHandler(increaseSpeed_LeftClick);
+            StatsAndControls.Add("Res", b);
+
+            //x += tex.Width;
+            //bt = "Enviar";
             //btdim = spriteFont.MeasureString(bt);
             //bpos = new Vector2(x, (int)(y + (tex.Height / 2.0f)));
 
@@ -411,33 +450,38 @@ namespace TDA3Engine
             //    (int)(y + (tex.Height - btdim.Y) / 2.0f));
 
             //b = new Button(tex, bpos, new Text(bt, spriteFont, tpos), c, null);
-            //b.LeftClickEvent += new EventHandler(pause_LeftClick);
-            //StatsAndControls.Add("Pause", b);
-
-            //x += tex.Width;
-            //bt = "Increase\nSpeed";
-            //btdim = spriteFont.MeasureString(bt);
-            //bpos = new Vector2(x, (int)(y + (tex.Height / 2.0f)));
-
-            //tpos = new Vector2((int)(bpos.X - tex.Width / 2.0f + padding),
-             //   (int)(y + (tex.Height - btdim.Y) / 2.0f));
-
-            //b = new Button(tex, bpos, new Text(bt, spriteFont, tpos), c, null);
-            //b.LeftClickEvent += new EventHandler(increaseSpeed_LeftClick);
-            //StatsAndControls.Add("IncreaseSpeed", b);
-
-            //x += tex.Width;
-            //bt = "Decrease\nSpeed";
-            //btdim = spriteFont.MeasureString(bt);
-            //bpos = new Vector2(x, (int)(y + (tex.Height / 2.0f)));
-
-            //tpos = new Vector2((int)(bpos.X - tex.Width / 2.0f + padding),
-              //  (int)(y + (tex.Height - btdim.Y) / 2.0f));
-
-            //b = new Button(tex, bpos, new Text(bt, spriteFont, tpos), c, null);
             //b.LeftClickEvent += new EventHandler(decreaseSpeed_LeftClick);
-            //StatsAndControls.Add("DecreaseSpeed", b);
+            //StatsAndControls.Add("Enviar", b);
 
+            /////////////////////////////////////////////////////////////////////////////////7
+
+        }
+
+
+        public bool ChecaEnter()
+        {
+            KeyboardState keyboardState = Keyboard.GetState();
+            bool resultado = (oldKeyboardState.IsKeyDown(Keys.Enter) && keyboardState.IsKeyUp(Keys.Enter));
+            oldKeyboardState = keyboardState;
+            return resultado;
+        }
+
+        public bool ChecaTecla(Keys key)
+        {
+            KeyboardState keyboardState = Keyboard.GetState();
+            bool resultado = false;
+            if (oldKeyboardState.IsKeyDown(key) && !presionado)
+            {
+                resultado = true;
+                presionado = true;
+            }
+            else if (oldKeyboardState.IsKeyUp(key) && presionado)
+            {
+                presionado = false;
+                resultado = false;
+            }
+            //oldKeyboardState = keyboardState;
+            return resultado;
         }
 
         void pause_LeftClick(object sender, EventArgs e)
@@ -514,6 +558,29 @@ namespace TDA3Engine
             {
                 b.Value.Update(gameTime, Session.UI.mouse);
             }
+
+            if(ChecaEnter())
+                respuesta = "";
+            if (ChecaTecla(Keys.D0)) 
+                respuesta += "0";
+            if (ChecaTecla(Keys.D1)) 
+                respuesta += "1";
+            if (ChecaTecla(Keys.D2)) 
+                respuesta += "2";
+            if (ChecaTecla(Keys.D3)) 
+                respuesta += "3";
+            if (ChecaTecla(Keys.D4)) 
+                respuesta += "4";
+            if (ChecaTecla(Keys.D5)) 
+                respuesta += "5";
+            if (ChecaTecla(Keys.D6)) 
+                respuesta += "6";
+            if (ChecaTecla(Keys.D7)) 
+                respuesta += "7";
+            if (ChecaTecla(Keys.D8)) 
+                respuesta += "8";
+            if (ChecaTecla(Keys.D9)) 
+                respuesta += "9";
 
             //Button isb = StatsAndControls.GetButton("IncreaseSpeed");
             //Button dsb = StatsAndControls.GetButton("DecreaseSpeed");
