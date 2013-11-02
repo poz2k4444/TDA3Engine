@@ -374,7 +374,7 @@ namespace TDA3Engine
 
         private void InitializeStatsAndControls()
         {
-            Text t;
+            //Text t;
             int y = StatsAndControls.Dimensions.Top + padding;
             //StatsAndControls.Add("Ola", new Text(String.Format("Ola {0} de {1}", waveindex + 1, Session.Map.WaveList.Count), new Vector2(StatsAndControls.Dimensions.Left + padding, y)));
 
