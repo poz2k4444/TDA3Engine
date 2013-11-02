@@ -280,14 +280,7 @@ namespace TDA3Engine
             SelectedTower.Add("SellTower", b);
             SelectedTower.Add("PowerTower", c);
         }
-<<<<<<< HEAD
         */
-=======
-
-<<<<<<< HEAD
->>>>>>> 5451e0f9e8c6efc65f0a85bd11dc87ba95b7f81d
-=======
->>>>>>> 5451e0f9e8c6efc65f0a85bd11dc87ba95b7f81d
         private int AddUpgradeButton(int y)
         {
             Button b = null;
