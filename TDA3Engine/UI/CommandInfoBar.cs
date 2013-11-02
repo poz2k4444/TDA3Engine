@@ -60,12 +60,16 @@ namespace TDA3Engine
 
         Tower clickedTower;
         int ElapsedTime = 15;
+        int PreguntaTime = 600;
         int PoderesTotales = 0;
         int RespCorrecta = 0;
+        Random random = new Random();
+        int dere = 0;
+        int izqui = 0;
 
         KeyboardState oldKeyboardState = Keyboard.GetState();
 
-        private string respuesta;
+        private string respuesta = "";
 
         private bool presionado = false;
 
@@ -415,40 +419,9 @@ namespace TDA3Engine
             b.LeftClickEvent += new EventHandler(nextWave_LeftClick);
             StatsAndControls.Add("SiguienteOla", b);
 
-
-            ////////////////////////////////////// AQUI IRÁ LO DE MULTIPLICAR
-            y += tex.Height + padding;
-
-
-            Random random = new Random();
-            int izqui = random.Next(1, 9);
-            int dere = random.Next(1, 9);
-            RespCorrecta = izqui * dere;
-            
-            tex = Session.Map.LargeNormalButtonTexture;
-            int x = (int)(SelectedTower.Dimensions.Left + (tex.Width / 2.0f) + padding);
-            c = Session.Map.ForeColor;
-            bt = izqui + " X " + dere;
-            btdim = spriteFont.MeasureString(bt);
-            bpos = new Vector2(x, (int)(y + (tex.Height / 2.0f)));
-
-            tpos = new Vector2((int)(bpos.X - tex.Width / 2.0f + padding),
-                (int)(y + (tex.Height - btdim.Y) / 2.0f));
-
-            b = new Button(tex, bpos, new Text(bt, spriteFont, tpos), c, null);
-            //b.LeftClickEvent += new EventHandler(pause_LeftClick);
-            StatsAndControls.Add("Multiplicar", b);
-
-            
-            x += tex.Width;
-            respuesta = "";
-            bt = respuesta;
-            btdim = spriteFont.MeasureString(bt);
-            bpos = new Vector2(x, (int)(y + (tex.Height / 2.0f)));
-
-            tpos = new Vector2((int)(bpos.X - tex.Width / 2.0f + padding),
-                (int)(y + (tex.Height - btdim.Y) / 2.0f));
-            TablasMultiplicar.Add("WTF", new Text("WTF NEGGA .i.", tpos));
+            TablasMultiplicar.Add("Pregunta", new Text("0x0", new Vector2(1017,607)));
+            TablasMultiplicar.Add("Respuesta", new Text("0", new Vector2(1117, 607)));
+            CambiarTabla();
 
             //x += tex.Width;
             //bt = "Enviar";
@@ -466,7 +439,14 @@ namespace TDA3Engine
 
         }
 
-
+        public void CambiarTabla()
+        {
+            izqui = random.Next(1, 9);
+            dere = random.Next(1, 9);
+            RespCorrecta = izqui * dere;
+            string valorA = izqui + " X " + dere + " = ";
+            TablasMultiplicar.GetText("Pregunta").Value = valorA;
+        }
         public bool ChecaEnter()
         {
             KeyboardState keyboardState = Keyboard.GetState();
@@ -542,7 +522,7 @@ namespace TDA3Engine
         {
             MoneyAndTowers.GetText("Dinero").Value = Session.MoneyDisplay;
             MoneyAndTowers.GetText("Torres").Value = Session.TowersDisplay;
-            TablasMultiplicar.GetText("WTF").Value = respuesta;
+            TablasMultiplicar.GetText("Respuesta").Value = respuesta;
             Button lnw = StatsAndControls.GetButton("SiguienteOla");
             Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
             Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
@@ -631,44 +611,27 @@ namespace TDA3Engine
             if (oldKeyboardState.IsKeyDown(Keys.Enter) && ElapsedTime <= 0)
             {
                 //Validar respuesta
-                if (RespCorrecta == int.Parse(respuesta))
+                if (respuesta!="correcto" && respuesta!="falso" && RespCorrecta == int.Parse(respuesta))
                 {
                     PoderesTotales++;
-                    respuesta = "bien :D";
+                    respuesta = "correcto";
                 }
                 else
                 {
-                    respuesta = "mal .i.";
+                    respuesta = "falso";
                 }
                 ElapsedTime = 15;
             }
-            ElapsedTime--;
-            
-            oldKeyboardState = Keyboard.GetState();
-            /*
-            if(ChecaEnter())
+            if (PreguntaTime == 0)
+            {
+                PreguntaTime = 600;
                 respuesta = "";
-            if (ChecaTecla(Keys.D0)) 
-                respuesta += "0";
-            if (ChecaTecla(Keys.D1)) 
-                respuesta += "1";
-            if (ChecaTecla(Keys.D2)) 
-                respuesta += "2";
-            if (ChecaTecla(Keys.D3)) 
-                respuesta += "3";
-            if (ChecaTecla(Keys.D4)) 
-                respuesta += "4";
-            if (ChecaTecla(Keys.D5)) 
-                respuesta += "5";
-            if (ChecaTecla(Keys.D6)) 
-                respuesta += "6";
-            if (ChecaTecla(Keys.D7)) 
-                respuesta += "7";
-            if (ChecaTecla(Keys.D8)) 
-                respuesta += "8";
-            if (ChecaTecla(Keys.D9)) 
-                respuesta += "9";
-             */
+                CambiarTabla();
+            }
+            ElapsedTime--;
+            PreguntaTime--;
+
+            oldKeyboardState = Keyboard.GetState();            
 
             //Button isb = StatsAndControls.GetButton("IncreaseSpeed");
             //Button dsb = StatsAndControls.GetButton("DecreaseSpeed");
