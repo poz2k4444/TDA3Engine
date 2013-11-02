@@ -23,7 +23,7 @@ namespace TDA3Game
         Session session;
         List<Tower> towers;
 
-        SpriteFont font;
+        //SpriteFont font;
 
         LevelSelectionScreen levelselect;
 

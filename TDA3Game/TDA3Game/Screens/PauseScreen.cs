@@ -85,22 +85,23 @@ namespace TDA3Game
             MenuEntries.Add(quit);
 
             Viewport view = ScreenSystem.Viewport;
+            /*
             SetDescriptionArea(new Rectangle(100, view.Height - 100,
                 view.Width - 100, 50), new Color(11, 38, 40), new Color(29, 108, 117),
                 new Point(10, 0), 0.5f);
-
+            */
         }
 
         public override void LoadContent()
         {
-
             ContentManager content = ScreenSystem.Content;
+            BackgroundTexture = content.Load<Texture2D>(@"Textures/Menu/MainMenuBackground2");
+            /*
+            
             SpriteFont = content.Load<SpriteFont>(@"Fonts/menu");
-
+            
             Texture2D entryTexture =
                 content.Load<Texture2D>(@"Textures/Menu/MenuEntries");
-
-            BackgroundTexture = content.Load<Texture2D>(@"Textures/Menu/MainMenuBackground");
 
             //Loads the title texture.
             TitleTexture = content.Load<Texture2D>(@"Textures/Menu/LogoWithText");
@@ -130,7 +131,7 @@ namespace TDA3Game
                         : 8;
                     MenuEntries[i].SetRelativePosition(new Vector2(0, offsetY), MenuEntries[i - 1], true);
                 }
-            }
+            }*/
         }
 
         public override void UnloadContent()
