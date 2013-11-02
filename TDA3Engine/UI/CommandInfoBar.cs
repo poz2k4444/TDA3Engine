@@ -40,6 +40,12 @@ namespace TDA3Engine
             private set;
         }
 
+        public UIBlock TablasMultiplicar
+        {
+            get;
+            private set;
+        }
+
         public Session Session
         {
             get;
@@ -74,6 +80,7 @@ namespace TDA3Engine
             PurchaseTower = new UIBlock(gd, s.Map.BorderTexture, s.Map.BorderColor, new Rectangle(r.X, MoneyAndTowers.Dimensions.Bottom + 10, r.Width - 5, 420), s);
             SelectedTower = new UIBlock(gd, s.Map.BorderTexture, s.Map.BorderColor, new Rectangle(r.X, MoneyAndTowers.Dimensions.Bottom + 10, r.Width - 5, 420), s);
             StatsAndControls = new UIBlock(gd, s.Map.BorderTexture, s.Map.BorderColor, new Rectangle(r.X, PurchaseTower.Dimensions.Bottom + 10, r.Width - 5, 200), s);
+            TablasMultiplicar = new UIBlock(gd, null, s.Map.BorderColor, new Rectangle(r.X, r.Y, r.Width - 5, 50), s);
 
             s.HealthDecreased += new EventHandler(s_HealthDecreased);
         }
@@ -436,10 +443,7 @@ namespace TDA3Engine
 
             tpos = new Vector2((int)(bpos.X - tex.Width / 2.0f + padding),
                 (int)(y + (tex.Height - btdim.Y) / 2.0f));
-
-            b = new Button(tex, bpos, new Text(bt, spriteFont, tpos), c, null);
-            b.LeftClickEvent += new EventHandler(increaseSpeed_LeftClick);
-            StatsAndControls.Add("Res", b);
+            TablasMultiplicar.Add("WTF", new Text("WTF NEGGA .i.", tpos));
 
             //x += tex.Width;
             //bt = "Enviar";
@@ -533,6 +537,7 @@ namespace TDA3Engine
         {
             MoneyAndTowers.GetText("Dinero").Value = Session.MoneyDisplay;
             MoneyAndTowers.GetText("Torres").Value = Session.TowersDisplay;
+            TablasMultiplicar.GetText("WTF").Value = respuesta;
             Button lnw = StatsAndControls.GetButton("SiguienteOla");
             Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
             Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
@@ -618,6 +623,7 @@ namespace TDA3Engine
         {
             spriteBatch.Draw(background, Rectangle, Color.White);
             MoneyAndTowers.Draw(gameTime, spriteBatch, spriteFont);
+            TablasMultiplicar.Draw(gameTime, spriteBatch, spriteFont);
 
             if (clickedTower != null)
             {
