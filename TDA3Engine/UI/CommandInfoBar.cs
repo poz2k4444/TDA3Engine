@@ -59,10 +59,17 @@ namespace TDA3Engine
         SpriteFont spriteFont;
 
         Tower clickedTower;
+        int ElapsedTime = 15;
+        int PreguntaTime = 600;
+        int PoderesTotales = 0;
+        int RespCorrecta = 0;
+        Random random = new Random();
+        int dere = 0;
+        int izqui = 0;
 
-        KeyboardState oldKeyboardState;
+        KeyboardState oldKeyboardState = Keyboard.GetState();
 
-        private string respuesta;
+        private string respuesta = "";
 
         private bool presionado = false;
 
@@ -211,18 +218,18 @@ namespace TDA3Engine
             Image icon = new Image(clickedTower.Texture, new Vector2(SelectedTower.Dimensions.Left, SelectedTower.Dimensions.Top + padding));
             SelectedTower.Add("TowerIcon", icon);
 
-            //SelectedTower.Add("TowerName", new Text(clickedTower.Name + " " + (clickedTower.Level + 1).ToString(), spriteFont, new Vector2(icon.Rectangle.Right + padding, SelectedTower.Dimensions.Top + padding)));
-            //SelectedTower.Add("TowerDescription", new Text(clickedTower.Description, spriteFont, new Vector2(icon.Rectangle.Right + padding, SelectedTower.Dimensions.Top + padding + spriteFont.LineSpacing)));
+            SelectedTower.Add("TowerName", new Text(clickedTower.Name + " " + (clickedTower.Level + 1).ToString(), spriteFont, new Vector2(icon.Rectangle.Right + padding, SelectedTower.Dimensions.Top + padding)));
+            SelectedTower.Add("TowerDescription", new Text(clickedTower.Description, spriteFont, new Vector2(icon.Rectangle.Right + padding, SelectedTower.Dimensions.Top + padding + spriteFont.LineSpacing)));
 
             Text stats = new Text(clickedTower.CurrentStatistics.ToShortString(), spriteFont, new Vector2(SelectedTower.Dimensions.Left + padding, icon.Rectangle.Bottom));
-            //SelectedTower.Add("Stats", stats);
+            SelectedTower.Add("Stats", stats);
 
             Text specials = new Text(String.Format("Specials: {0}", t.bulletBase.Type == BulletType.Normal ? "None" : t.bulletBase.Type.ToString()),
                 spriteFont, new Vector2(SelectedTower.Dimensions.Left + padding, stats.Rectangle.Bottom));
-            //SelectedTower.Add("Specials", specials);
+            SelectedTower.Add("Specials", specials);
 
             Text price = new Text(String.Format("Price: {0}", clickedTower.TotalCost), spriteFont, new Vector2(SelectedTower.Dimensions.Left + padding, specials.Rectangle.Bottom));
-            //SelectedTower.Add("Price", price);
+            SelectedTower.Add("Price", price);
 
             if (t.IsPlaced)
             {
@@ -252,6 +259,7 @@ namespace TDA3Engine
         private void AddSellButton(int y)
         {
             Button b = null;
+            Button c = null;
             string st = String.Format("Vender Torre (Recibe {0})", (int)(clickedTower.TotalCost * clickedTower.SellScalar));
             Vector2 stdim = spriteFont.MeasureString(st);
             Vector2 bpos = new Vector2((int)(SelectedTower.Dimensions.Left + (Session.Map.SmallNormalButtonTexture.Width / 2.0f) +
@@ -259,12 +267,24 @@ namespace TDA3Engine
 
             Vector2 tpos = new Vector2((int)(bpos.X - Session.Map.SmallNormalButtonTexture.Width / 2.0f + padding),
                 (int)(y + (Session.Map.SmallNormalButtonTexture.Height - stdim.Y) / 2.0f));
-
+            tpos.Y = 425;
+            bpos.Y = tpos.Y-2;
+            tpos.Y = 410;
             b = new Button(Session.Map.SmallNormalButtonTexture, bpos, new Text(st, spriteFont, tpos), Session.Map.ForeColor, clickedTower);
+            tpos.Y = 390;
+            bpos.Y = tpos.Y - 2;
+            tpos.Y = 375;
+            c = new Button(Session.Map.SmallNormalButtonTexture, bpos, new Text("Poder", spriteFont, tpos), Session.Map.ForeColor, clickedTower);
             b.LeftClickEvent += new EventHandler(sellTower_LeftClick);
+            c.LeftClickEvent += new EventHandler(powerTower_LeftClick);
             SelectedTower.Add("SellTower", b);
+            SelectedTower.Add("PowerTower", c);
         }
+<<<<<<< HEAD
         */
+=======
+
+>>>>>>> 5451e0f9e8c6efc65f0a85bd11dc87ba95b7f81d
         private int AddUpgradeButton(int y)
         {
             Button b = null;
@@ -343,6 +363,11 @@ namespace TDA3Engine
                 clickedTower = null;
             }
         }
+        void powerTower_LeftClick(object sender, EventArgs e)
+        {
+            if(PoderesTotales>0)
+                PoderesTotales--;
+        }
 
         void upgradeTower_LeftClick(object sender, EventArgs e)
         {
@@ -412,38 +437,10 @@ namespace TDA3Engine
             b.LeftClickEvent += new EventHandler(nextWave_LeftClick);
             StatsAndControls.Add("SiguienteOla", b);
 
-
-            ////////////////////////////////////// AQUI IRÁ LO DE MULTIPLICAR
-            y += tex.Height + padding;
-
-
-            Random random = new Random();
-            int izqui = random.Next(1, 9);
-            int dere = random.Next(1, 9);
-            tex = Session.Map.LargeNormalButtonTexture;
-            int x = (int)(SelectedTower.Dimensions.Left + (tex.Width / 2.0f) + padding);
-            c = Session.Map.ForeColor;
-            bt = izqui + " X " + dere;
-            btdim = spriteFont.MeasureString(bt);
-            bpos = new Vector2(x, (int)(y + (tex.Height / 2.0f)));
-
-            tpos = new Vector2((int)(bpos.X - tex.Width / 2.0f + padding),
-                (int)(y + (tex.Height - btdim.Y) / 2.0f));
-
-            b = new Button(tex, bpos, new Text(bt, spriteFont, tpos), c, null);
-            //b.LeftClickEvent += new EventHandler(pause_LeftClick);
-            StatsAndControls.Add("Multiplicar", b);
-
-            
-            x += tex.Width;
-            respuesta = "";
-            bt = respuesta;
-            btdim = spriteFont.MeasureString(bt);
-            bpos = new Vector2(x, (int)(y + (tex.Height / 2.0f)));
-
-            tpos = new Vector2((int)(bpos.X - tex.Width / 2.0f + padding),
-                (int)(y + (tex.Height - btdim.Y) / 2.0f));
-            TablasMultiplicar.Add("WTF", new Text("WTF NEGGA .i.", tpos));
+            TablasMultiplicar.Add("Pregunta", new Text("0x0", new Vector2(1017,607)));
+            TablasMultiplicar.Add("Respuesta", new Text("0", new Vector2(1117, 607)));
+            TablasMultiplicar.Add("Poder", new Text(""+PoderesTotales, new Vector2(1000, 501)));
+            CambiarTabla();
 
             //x += tex.Width;
             //bt = "Enviar";
@@ -461,7 +458,14 @@ namespace TDA3Engine
 
         }
 
-
+        public void CambiarTabla()
+        {
+            izqui = random.Next(1, 9);
+            dere = random.Next(1, 9);
+            RespCorrecta = izqui * dere;
+            string valorA = izqui + " X " + dere + " = ";
+            TablasMultiplicar.GetText("Pregunta").Value = valorA;
+        }
         public bool ChecaEnter()
         {
             KeyboardState keyboardState = Keyboard.GetState();
@@ -537,7 +541,8 @@ namespace TDA3Engine
         {
             MoneyAndTowers.GetText("Dinero").Value = Session.MoneyDisplay;
             MoneyAndTowers.GetText("Torres").Value = Session.TowersDisplay;
-            TablasMultiplicar.GetText("WTF").Value = respuesta;
+            TablasMultiplicar.GetText("Respuesta").Value = respuesta;
+            TablasMultiplicar.GetText("Poder").Value = "Poderes: "+PoderesTotales;
             Button lnw = StatsAndControls.GetButton("SiguienteOla");
             Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
             Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
@@ -558,34 +563,96 @@ namespace TDA3Engine
                     b.Value.Update(gameTime, Session.UI.mouse);
                 }
             }
-
+            
             foreach (var b in StatsAndControls.Buttons)
             {
                 b.Value.Update(gameTime, Session.UI.mouse);
             }
+            
+            if (oldKeyboardState.IsKeyDown(Keys.Back) && respuesta.Length > 0 && ElapsedTime <= 0) 
+            {
+                respuesta = respuesta.Remove(respuesta.Length - 1);
+                ElapsedTime = 15;
+            }
+            if (respuesta.Length <= 2)
+            {
+                if (oldKeyboardState.IsKeyDown(Keys.D0) && ElapsedTime <= 0)
+                {
+                    respuesta += "0";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D1) && ElapsedTime <= 0)
+                {
+                    respuesta += "1";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D2) && ElapsedTime <= 0)
+                {
+                    respuesta += "2";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D3) && ElapsedTime <= 0)
+                {
+                    respuesta += "3";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D4) && ElapsedTime <= 0)
+                {
+                    respuesta += "4";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D5) && ElapsedTime <= 0)
+                {
+                    respuesta += "5";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D6) && ElapsedTime <= 0)
+                {
+                    respuesta += "6";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D7) && ElapsedTime <= 0)
+                {
+                    respuesta += "7";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D8) && ElapsedTime <= 0)
+                {
+                    respuesta += "8";
+                    ElapsedTime = 15;
+                }
+                else if (oldKeyboardState.IsKeyDown(Keys.D9) && ElapsedTime <= 0)
+                {
+                    respuesta += "9";
+                    ElapsedTime = 15;
+                }
 
-            if(ChecaEnter())
+            }
+            if (oldKeyboardState.IsKeyDown(Keys.Enter) && ElapsedTime <= 0)
+            {
+                //Validar respuesta
+                if (respuesta != "correcto" && respuesta != "falso" && respuesta != "" && RespCorrecta == int.Parse(respuesta))
+                {
+                    if(PoderesTotales<5)
+                        PoderesTotales++;
+                    respuesta = "correcto";
+                }
+                else
+                {
+                    respuesta = "falso";
+                }
+                ElapsedTime = 15;
+            }
+            if (PreguntaTime == 0)
+            {
+                PreguntaTime = 600;
                 respuesta = "";
-            if (ChecaTecla(Keys.D0)) 
-                respuesta += "0";
-            if (ChecaTecla(Keys.D1)) 
-                respuesta += "1";
-            if (ChecaTecla(Keys.D2)) 
-                respuesta += "2";
-            if (ChecaTecla(Keys.D3)) 
-                respuesta += "3";
-            if (ChecaTecla(Keys.D4)) 
-                respuesta += "4";
-            if (ChecaTecla(Keys.D5)) 
-                respuesta += "5";
-            if (ChecaTecla(Keys.D6)) 
-                respuesta += "6";
-            if (ChecaTecla(Keys.D7)) 
-                respuesta += "7";
-            if (ChecaTecla(Keys.D8)) 
-                respuesta += "8";
-            if (ChecaTecla(Keys.D9)) 
-                respuesta += "9";
+                CambiarTabla();
+            }
+            ElapsedTime--;
+            PreguntaTime--;
+
+            oldKeyboardState = Keyboard.GetState();            
 
             //Button isb = StatsAndControls.GetButton("IncreaseSpeed");
             //Button dsb = StatsAndControls.GetButton("DecreaseSpeed");
