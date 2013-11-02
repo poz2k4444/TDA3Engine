@@ -235,7 +235,7 @@ namespace TDA3Engine
             {
                 int pb = AddUpgradeButton(price.Rectangle.Bottom + padding);
                 //AddSellButton(pb + padding);
-                //AddSellButton(padding);
+                AddSellButton(padding);
             }
             else
             {
@@ -255,7 +255,7 @@ namespace TDA3Engine
             cb.LeftClickEvent += new EventHandler(cancelButton_LeftClick);
             SelectedTower.Add("Cancel", cb);
         }
-        /*
+        
         private void AddSellButton(int y)
         {
             Button b = null;
@@ -280,7 +280,7 @@ namespace TDA3Engine
             SelectedTower.Add("SellTower", b);
             SelectedTower.Add("PowerTower", c);
         }
-        */
+        
         private int AddUpgradeButton(int y)
         {
             Button b = null;
@@ -373,10 +373,10 @@ namespace TDA3Engine
                 Tower t = b.StoredObject as Tower;
                 Session.UpgradeTower(t);
                 b.ButtonText.Value = String.Format("Mejorar (Cuesta {0})", clickedTower.UpgradeCost);
-                //SelectedTower.GetButton("SellTower").ButtonText.Value = String.Format("Vender (Recibes {0})", (int)(clickedTower.TotalCost * clickedTower.SellScalar));
-                //SelectedTower.GetText("Stats").Value = clickedTower.CurrentStatistics.ToShortString();
-                //SelectedTower.GetText("Price").Value = String.Format("Precio: {0}", clickedTower.TotalCost);
-                //SelectedTower.GetText("TowerName").Value = clickedTower.Name + " " + (clickedTower.Level + 1).ToString();
+                SelectedTower.GetButton("SellTower").ButtonText.Value = String.Format("Vender (Recibes {0})", (int)(clickedTower.TotalCost * clickedTower.SellScalar));
+                SelectedTower.GetText("Stats").Value = clickedTower.CurrentStatistics.ToShortString();
+                SelectedTower.GetText("Price").Value = String.Format("Precio: {0}", clickedTower.TotalCost);
+                SelectedTower.GetText("TowerName").Value = clickedTower.Name + " " + (clickedTower.Level + 1).ToString();
 
                 if (clickedTower.UpgradeCost > Session.ActivePlayer.Money || clickedTower.Level == clickedTower.MaxLevel)
                 {
