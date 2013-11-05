@@ -458,7 +458,12 @@ namespace TDA3Engine
         {
             if (is_wave_active())
             {
-                izqui = random.Next(1, 9);
+                if( Session.Map.Difficulty == 1)
+                    izqui = random.Next(1, 3);
+                else if (Session.Map.Difficulty == 2)
+                    izqui = random.Next(1, 6);
+                else if( Session.Map.Difficulty == 3)
+                    izqui = random.Next(1, 9);
                 dere = random.Next(1, 9);
                 RespCorrecta = izqui * dere;
                 string valorA = izqui + " X " + dere + " = ";

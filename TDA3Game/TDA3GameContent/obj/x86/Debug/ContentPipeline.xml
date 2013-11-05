@@ -341,7 +341,7 @@
       <Processor>PassThroughProcessor</Processor>
       <Options>None</Options>
       <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Maps\Forest\Forest.xnb</Output>
-      <Time>2013-11-02T14:04:34-05:00</Time>
+      <Time>2013-11-02T15:59:26-05:00</Time>
     </Item>
     <Item>
       <Source>Maps\MapLoader.xml</Source>
@@ -350,7 +350,7 @@
       <Processor>PassThroughProcessor</Processor>
       <Options>None</Options>
       <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Maps\MapLoader.xnb</Output>
-      <Time>2013-10-22T11:03:35-05:00</Time>
+      <Time>2013-11-02T16:23:04-05:00</Time>
     </Item>
     <Item>
       <Source>Monsters\SlowAlien.xml</Source>
@@ -460,6 +460,240 @@
       <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Towers\ArmorTower.xnb</Output>
       <Time>2013-11-02T14:04:34-05:00</Time>
     </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\BasicTower.png</Source>
+      <Name>Textures\Maps\Snow\BasicTower</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\BasicTower.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\basic_thumb.png</Source>
+      <Name>Textures\Maps\Snow\basic_thumb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\basic_thumb.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\bombtower.png</Source>
+      <Name>Textures\Maps\Snow\bombtower</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\bombtower.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\bomb_thumb.png</Source>
+      <Name>Textures\Maps\Snow\bomb_thumb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\bomb_thumb.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\border.png</Source>
+      <Name>Textures\Maps\Snow\border</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\border.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\Bullets\bomb.png</Source>
+      <Name>Textures\Maps\Snow\Bullets\bomb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\Bullets\bomb.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\Bullets\bomb_particle.png</Source>
+      <Name>Textures\Maps\Snow\Bullets\bomb_particle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\Bullets\bomb_particle.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\Bullets\pebble.png</Source>
+      <Name>Textures\Maps\Snow\Bullets\pebble</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\Bullets\pebble.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\Bullets\pebble_particle.png</Source>
+      <Name>Textures\Maps\Snow\Bullets\pebble_particle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\Bullets\pebble_particle.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\Bullets\poison.png</Source>
+      <Name>Textures\Maps\Snow\Bullets\poison</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\Bullets\poison.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\Bullets\poison_particle.png</Source>
+      <Name>Textures\Maps\Snow\Bullets\poison_particle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\Bullets\poison_particle.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\button_lg_normal.png</Source>
+      <Name>Textures\Maps\Snow\button_lg_normal</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\button_lg_normal.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\button_sm_normal.png</Source>
+      <Name>Textures\Maps\Snow\button_sm_normal</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\button_sm_normal.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\gate.png</Source>
+      <Name>Textures\Maps\Snow\gate</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\gate.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\house.png</Source>
+      <Name>Textures\Maps\Snow\house</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\house.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\infobar_bg.png</Source>
+      <Name>Textures\Maps\Snow\infobar_bg</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\infobar_bg.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\mouse.png</Source>
+      <Name>Textures\Maps\Snow\mouse</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\mouse.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\PoisonTower.png</Source>
+      <Name>Textures\Maps\Snow\PoisonTower</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\PoisonTower.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\poison_thumb.png</Source>
+      <Name>Textures\Maps\Snow\poison_thumb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\poison_thumb.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\thumbnail.png</Source>
+      <Name>Textures\Maps\Snow\thumbnail</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\thumbnail.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\tiles.png</Source>
+      <Name>Textures\Maps\Snow\tiles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\tiles.xnb</Output>
+      <Time>2013-09-26T18:03:08-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Maps\Snow\Snow.xml</Source>
+      <Name>Maps\Snow\Snow</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Maps\Snow\Snow.xnb</Output>
+      <Time>2013-11-02T16:25:21-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\escuela.png</Source>
+      <Name>Textures\Maps\Snow\escuela</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\escuela.xnb</Output>
+      <Time>2013-10-22T11:03:35-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\radius.png</Source>
+      <Name>Textures\Maps\Snow\radius</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\radius.xnb</Output>
+      <Time>2013-10-22T11:03:35-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\button_sm_error.png</Source>
+      <Name>Textures\Maps\Snow\button_sm_error</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\button_sm_error.xnb</Output>
+      <Time>2013-10-22T11:03:35-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Maps\Snow\button_lg_error.png</Source>
+      <Name>Textures\Maps\Snow\button_lg_error</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>Z:\Repos\Games\TDA3Engine\TDA3Game\TDA3Game\bin\x86\Debug\Content\Textures\Maps\Snow\button_lg_error.xnb</Output>
+      <Time>2013-10-22T11:03:35-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
@@ -474,7 +708,7 @@
     <Assemblies>
       <Assembly>
         <Key>Z:\Repos\Games\TDA3Engine\TDA3Engine\bin\x86\Debug\TDA3Engine.dll</Key>
-        <Value>2013-11-02T14:31:51-05:00</Value>
+        <Value>2013-11-02T15:58:52-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>

@@ -61,23 +61,23 @@ namespace TDA3Game
             InputMap.NewAction(MenuCancelActionName, Keys.Escape);
 
             play = new MainMenuEntry(this, "Play", "PLAY THE GAME");
-            options = new MainMenuEntry(this, "Options", "CHANGE GAME SETTINGS");
-            help = new MainMenuEntry(this, "Help", "INPUT DIAGRAM AND GENERAL GAME INFORMATION");
-            quit = new MainMenuEntry(this, "Quit", "DONE PLAYING FOR NOW?");
+            //options = new MainMenuEntry(this, "Options", "CHANGE GAME SETTINGS");
+            //help = new MainMenuEntry(this, "Help", "INPUT DIAGRAM AND GENERAL GAME INFORMATION");
+            //quit = new MainMenuEntry(this, "Quit", "DONE PLAYING FOR NOW?");
 
             Removing += new EventHandler(MainMenuRemoving);
             Entering += new TransitionEventHandler(MainMenuScreen_Entering);
             Exiting += new TransitionEventHandler(MainMenuScreen_Exiting);
 
             play.Selected += new EventHandler(PlaySelect);
-            options.Selected += new EventHandler(OptionsSelect);
-            help.Selected += new EventHandler(HelpSelect);
-            quit.Selected += new EventHandler(QuitSelect);
+            //options.Selected += new EventHandler(OptionsSelect);
+            //help.Selected += new EventHandler(HelpSelect);
+            //quit.Selected += new EventHandler(QuitSelect);
 
             MenuEntries.Add(play);
-            MenuEntries.Add(options);
-            MenuEntries.Add(help);
-            MenuEntries.Add(quit);
+            //MenuEntries.Add(options);
+            //MenuEntries.Add(help);
+            //MenuEntries.Add(quit);
 
             Viewport view = ScreenSystem.Viewport;
             SetDescriptionArea(new Rectangle(100, view.Height - 100,

@@ -49,12 +49,12 @@ namespace TDA3Game
             //screenSystem.AddScreen(new VideoIntroScreen());
             //screenSystem.AddScreen(new GameOverScreen(new LevelSelectionScreen()));
             //screenSystem.AddScreen(new HelpScreen(new VideoIntroScreen()));
-            //screenSystem.AddScreen(new MainMenuScreen());
-            MapLoader ml;
-            ml = screenSystem.Content.Load<MapLoader>("Maps\\MapLoader");
-            Map selectedMap;
-            selectedMap = ml.Maps[0];
-            screenSystem.AddScreen(new PlayScreen(new LevelSelectionScreen(), selectedMap));
+            screenSystem.AddScreen(new MainMenuScreen());
+            //MapLoader ml;
+            //ml = screenSystem.Content.Load<MapLoader>("Maps\\MapLoader");
+            //Map selectedMap;
+            //selectedMap = ml.Maps[0];
+            //screenSystem.AddScreen(new PlayScreen(new LevelSelectionScreen(), selectedMap));
             clearColor = new Color(70, 132, 143);
             Settings.MusicVolume = 1.0f;
             Settings.SoundVolume = 1.0f;

@@ -682,7 +682,15 @@ namespace TDA3Engine
                 map.WaveDelay = input.ReadSingle();
 
                 map.Difficulty = input.ReadInt32();
-                map.DifficultyInfo = String.Format("Dificultad: {0}", map.Difficulty);
+                string nombreDificultad = "";
+                if (map.Difficulty == 1)
+                    nombreDificultad = "Principiante";
+                else if (map.Difficulty == 2)
+                    nombreDificultad = "Intermedio";
+                else if (map.Difficulty == 3)
+                    nombreDificultad = "Avanzado";
+                //map.DifficultyInfo = String.Format("Dificultad: {0}", map.Difficulty);
+                map.DifficultyInfo = String.Format("Dificultad: "+nombreDificultad);
 
                 map.Money = input.ReadInt32();
                 map.ForeColorArray = input.ReadObject<int[]>();

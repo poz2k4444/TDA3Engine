@@ -3,6 +3,7 @@
   <Asset Type="TDA3Engine.MapLoader">
     <MapsContentNames>
       <Item>Forest</Item>
+      <Item>Snow</Item>
     </MapsContentNames>
   </Asset>
 </XnaContent>
