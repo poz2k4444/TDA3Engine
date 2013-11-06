@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
   <Asset Type="TDA3Engine.Map">
-<<<<<<< HEAD
     <Name>Snow</Name>
-=======
-    <Name>Forest</Name>
->>>>>>> 324f5bbc7606f8ac12080a168790f81cec39278a
     <Dimensions>15 11</Dimensions>
     <TileDimensions>64 64</TileDimensions>
     <Description>Tema forest</Description>
