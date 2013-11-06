@@ -632,92 +632,172 @@ namespace TDA3Engine
 
         void tablasSeleccionda1_LeftClick(object sender, EventArgs e)
         {
-            tablasSeleccionadas.Add(1);
-            Button b = SelectTablas.GetButton("Tabla1");
-            b.Texture = Session.Map.SmallErrorButtonTexture;
-            b.SetColor(Session.Map.ErrorColor);
-            b.LeftClickEvent -= tablasSeleccionda1_LeftClick;
-            b.Deactivate();
+            if (tablasSeleccionadas.Contains(1))
+            {
+                tablasSeleccionadas.Remove(1);
+                Button b = SelectTablas.GetButton("Tabla1");
+                b.Texture = Session.Map.SmallNormalButtonTexture;
+                b.SetColor(Session.Map.ForeColor);
+            }
+            else {
+                tablasSeleccionadas.Add(1);
+                Button b = SelectTablas.GetButton("Tabla1");
+                b.Texture = Session.Map.SmallErrorButtonTexture;
+                b.SetColor(Session.Map.ErrorColor);
+                b.Deactivate();
+            }
         }
 
         void tablasSeleccionda2_LeftClick(object sender, EventArgs e)
         {
-            tablasSeleccionadas.Add(2);
-            Button b = SelectTablas.GetButton("Tabla2");
-            b.Texture = Session.Map.SmallErrorButtonTexture;
-            b.SetColor(Session.Map.ErrorColor);
-            b.LeftClickEvent -= tablasSeleccionda2_LeftClick;
-            b.Deactivate();
+            if (tablasSeleccionadas.Contains(2))
+            {
+                tablasSeleccionadas.Remove(2);
+                Button b = SelectTablas.GetButton("Tabla2");
+                b.Texture = Session.Map.SmallNormalButtonTexture;
+                b.SetColor(Session.Map.ForeColor);
+            }
+            else
+            {
+                tablasSeleccionadas.Add(2);
+                Button b = SelectTablas.GetButton("Tabla2");
+                b.Texture = Session.Map.SmallErrorButtonTexture;
+                b.SetColor(Session.Map.ErrorColor);
+                b.Deactivate();
+            }
         }
 
         void tablasSeleccionda3_LeftClick(object sender, EventArgs e)
         {
-            tablasSeleccionadas.Add(3);
-            Button b = SelectTablas.GetButton("Tabla3");
-            b.Texture = Session.Map.SmallErrorButtonTexture;
-            b.SetColor(Session.Map.ErrorColor);
-            b.LeftClickEvent -= tablasSeleccionda3_LeftClick;
-            b.Deactivate();
+            if (tablasSeleccionadas.Contains(3))
+            {
+                tablasSeleccionadas.Remove(3);
+                Button b = SelectTablas.GetButton("Tabla3");
+                b.Texture = Session.Map.SmallNormalButtonTexture;
+                b.SetColor(Session.Map.ForeColor);
+            }
+            else
+            {
+                tablasSeleccionadas.Add(3);
+                Button b = SelectTablas.GetButton("Tabla3");
+                b.Texture = Session.Map.SmallErrorButtonTexture;
+                b.SetColor(Session.Map.ErrorColor);
+                b.Deactivate();
+            }
         }
 
         void tablasSeleccionda4_LeftClick(object sender, EventArgs e)
         {
-            tablasSeleccionadas.Add(4);
-            Button b = SelectTablas.GetButton("Tabla4");
-            b.Texture = Session.Map.SmallErrorButtonTexture;
-            b.SetColor(Session.Map.ErrorColor);
-            b.LeftClickEvent -= tablasSeleccionda4_LeftClick;
-            b.Deactivate();
+            if (tablasSeleccionadas.Contains(4))
+            {
+                tablasSeleccionadas.Remove(4);
+                Button b = SelectTablas.GetButton("Tabla4");
+                b.Texture = Session.Map.SmallNormalButtonTexture;
+                b.SetColor(Session.Map.ForeColor);
+            }
+            else
+            {
+                tablasSeleccionadas.Add(4);
+                Button b = SelectTablas.GetButton("Tabla4");
+                b.Texture = Session.Map.SmallErrorButtonTexture;
+                b.SetColor(Session.Map.ErrorColor);
+                b.Deactivate();
+            }
         }
 
         void tablasSeleccionda5_LeftClick(object sender, EventArgs e)
         {
-            tablasSeleccionadas.Add(5);
-            Button b = SelectTablas.GetButton("Tabla5");
-            b.Texture = Session.Map.SmallErrorButtonTexture;
-            b.SetColor(Session.Map.ErrorColor);
-            b.LeftClickEvent -= tablasSeleccionda5_LeftClick;
-            b.Deactivate();
+            if (tablasSeleccionadas.Contains(5))
+            {
+                tablasSeleccionadas.Remove(5);
+                Button b = SelectTablas.GetButton("Tabla5");
+                b.Texture = Session.Map.SmallNormalButtonTexture;
+                b.SetColor(Session.Map.ForeColor);
+            }
+            else
+            {
+                tablasSeleccionadas.Add(5);
+                Button b = SelectTablas.GetButton("Tabla5");
+                b.Texture = Session.Map.SmallErrorButtonTexture;
+                b.SetColor(Session.Map.ErrorColor);
+                b.Deactivate();
+            }
         }
 
         void tablasSeleccionda6_LeftClick(object sender, EventArgs e)
         {
-            tablasSeleccionadas.Add(6);
-            Button b = SelectTablas.GetButton("Tabla6");
-            b.Texture = Session.Map.SmallErrorButtonTexture;
-            b.SetColor(Session.Map.ErrorColor);
-            b.LeftClickEvent -= tablasSeleccionda6_LeftClick;
-            b.Deactivate();
+            if (tablasSeleccionadas.Contains(6))
+            {
+                tablasSeleccionadas.Remove(6);
+                Button b = SelectTablas.GetButton("Tabla6");
+                b.Texture = Session.Map.SmallNormalButtonTexture;
+                b.SetColor(Session.Map.ForeColor);
+            }
+            else
+            {
+                tablasSeleccionadas.Add(6);
+                Button b = SelectTablas.GetButton("Tabla6");
+                b.Texture = Session.Map.SmallErrorButtonTexture;
+                b.SetColor(Session.Map.ErrorColor);
+                b.Deactivate();
+            }
         }
 
         void tablasSeleccionda7_LeftClick(object sender, EventArgs e)
         {
-            tablasSeleccionadas.Add(7);
-            Button b = SelectTablas.GetButton("Tabla7");
-            b.Texture = Session.Map.SmallErrorButtonTexture;
-            b.SetColor(Session.Map.ErrorColor);
-            b.LeftClickEvent -= tablasSeleccionda7_LeftClick;
-            b.Deactivate();
+            if (tablasSeleccionadas.Contains(7))
+            {
+                tablasSeleccionadas.Remove(7);
+                Button b = SelectTablas.GetButton("Tabla7");
+                b.Texture = Session.Map.SmallNormalButtonTexture;
+                b.SetColor(Session.Map.ForeColor);
+            }
+            else
+            {
+                tablasSeleccionadas.Add(7);
+                Button b = SelectTablas.GetButton("Tabla7");
+                b.Texture = Session.Map.SmallErrorButtonTexture;
+                b.SetColor(Session.Map.ErrorColor);
+                b.Deactivate();
+            }
         }
 
         void tablasSeleccionda8_LeftClick(object sender, EventArgs e)
         {
-            tablasSeleccionadas.Add(8);
-            Button b = SelectTablas.GetButton("Tabla8");
-            b.Texture = Session.Map.SmallErrorButtonTexture;
-            b.SetColor(Session.Map.ErrorColor);
-            b.LeftClickEvent -= tablasSeleccionda8_LeftClick;
-            b.Deactivate();
+            if (tablasSeleccionadas.Contains(8))
+            {
+                tablasSeleccionadas.Remove(8);
+                Button b = SelectTablas.GetButton("Tabla8");
+                b.Texture = Session.Map.SmallNormalButtonTexture;
+                b.SetColor(Session.Map.ForeColor);
+            }
+            else
+            {
+                tablasSeleccionadas.Add(8);
+                Button b = SelectTablas.GetButton("Tabla8");
+                b.Texture = Session.Map.SmallErrorButtonTexture;
+                b.SetColor(Session.Map.ErrorColor);
+                b.Deactivate();
+            }
         }
 
         void tablasSeleccionda9_LeftClick(object sender, EventArgs e)
         {
-            tablasSeleccionadas.Add(9);
-            Button b = SelectTablas.GetButton("Tabla9");
-            b.Texture = Session.Map.SmallErrorButtonTexture;
-            b.SetColor(Session.Map.ErrorColor);
-            b.LeftClickEvent -= tablasSeleccionda9_LeftClick;
-            b.Deactivate();
+            if (tablasSeleccionadas.Contains(9))
+            {
+                tablasSeleccionadas.Remove(9);
+                Button b = SelectTablas.GetButton("Tabla9");
+                b.Texture = Session.Map.SmallNormalButtonTexture;
+                b.SetColor(Session.Map.ForeColor);
+            }
+            else
+            {
+                tablasSeleccionadas.Add(9);
+                Button b = SelectTablas.GetButton("Tabla9");
+                b.Texture = Session.Map.SmallErrorButtonTexture;
+                b.SetColor(Session.Map.ErrorColor);
+                b.Deactivate();
+            }
         }
 
         void iniciarJuego_LeftClick(object sender, EventArgs e)
