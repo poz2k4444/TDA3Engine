@@ -133,11 +133,12 @@ namespace TDA3Engine
             get { return level; }
             set
             {
-                if (value < MaxLevel)
-                {
-                    level = value;
-                    LevelUp();
-                }
+                level = value;
+                //if (value < MaxLevel)
+                //{
+                //    level = value;
+                //    LevelUp();
+                //}
             }
         }
 
@@ -170,10 +171,10 @@ namespace TDA3Engine
 
         private void LevelUp()
         {
-            if (level > 0 && initialStatistics != null && UpgradeStatistics != null)
-            {
-                CurrentStatistics = TowerStatistics.Add(initialStatistics, UpgradeStatistics.Multiply(UpgradeStatistics, level));
-            }
+            //if (level > 0 && initialStatistics != null && UpgradeStatistics != null)
+            //{
+            //    CurrentStatistics = TowerStatistics.Add(initialStatistics, UpgradeStatistics.Multiply(UpgradeStatistics, level));
+            //}
         }
 
         [ContentSerializerIgnore]

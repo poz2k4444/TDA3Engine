@@ -72,7 +72,7 @@ namespace TDA3Engine
             TowerStatistics result = new TowerStatistics();
 
             result.Health = a.Health + b.Health;
-            result.Damage = a.Damage + b.Damage;
+            result.Damage = a.Damage;// + b.Damage;
             result.Speed = a.Speed + b.Speed;
             result.Accuracy = a.Accuracy + b.Accuracy;
             result.CriticalChance = a.CriticalChance + b.CriticalChance;
@@ -87,7 +87,7 @@ namespace TDA3Engine
             TowerStatistics result = new TowerStatistics();
 
             result.Health = a.Health + b.HealthIncrease;
-            result.Damage = a.Damage + b.DamageIncrease;
+            result.Damage = a.Damage;// +b.DamageIncrease;
             result.Speed = a.Speed + b.SpeedIncrease;
             result.Accuracy = a.Accuracy + b.AccuracyIncrease;
             result.CriticalChance = a.CriticalChance + b.CriticalChanceIncrease;
@@ -102,7 +102,7 @@ namespace TDA3Engine
             TowerStatistics result = new TowerStatistics();
 
             result.Health = a.Health - b.Health;
-            result.Damage = a.Damage - b.Damage;
+            result.Damage = a.Damage;// -b.Damage;
             result.Speed = a.Speed - b.Speed;
             result.Accuracy = a.Accuracy - b.Accuracy;
             result.CriticalChance = a.CriticalChance - b.CriticalChance;
@@ -117,7 +117,7 @@ namespace TDA3Engine
             TowerStatistics result = new TowerStatistics();
 
             result.Health = (int)(a.Health * b);
-            result.Damage = (int)(a.Damage * b);
+            result.Damage = (int)(a.Damage);// * b);
             result.Speed = a.Speed * b;
             result.Accuracy = a.Accuracy * b;
             result.CriticalChance = a.CriticalChance * b;

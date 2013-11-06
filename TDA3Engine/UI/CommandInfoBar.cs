@@ -365,21 +365,23 @@ namespace TDA3Engine
             Button b = sender as Button;
             if (b != null)
             {
-                if(clickedTower.UpgradeCost <= PoderesTotales){
+                
                 Tower t = b.StoredObject as Tower;
                 PoderesTotales = PoderesTotales - clickedTower.UpgradeCost;
                 Session.UpgradeTower(t);
+                t.Level = 2;
                 b.ButtonText.Value = String.Format("Poderes: {0}", clickedTower.UpgradeCost);
                 //SelectedTower.GetButton("SellTower").ButtonText.Value = String.Format("Vender (Recibes {0})", (int)(clickedTower.TotalCost * clickedTower.SellScalar));
                 //SelectedTower.GetText("Stats").Value = clickedTower.CurrentStatistics.ToShortString();
                 //SelectedTower.GetText("Price").Value = String.Format("Precio: {0}", clickedTower.TotalCost);
                 //SelectedTower.GetText("TowerName").Value = clickedTower.Name + " " + (clickedTower.Level + 1).ToString();
 
-                }else
+                if (clickedTower.UpgradeCost > PoderesTotales && t.Level == 2)
                 {
                     b.Texture = Session.Map.SmallErrorButtonTexture;
                     b.SetColor(Session.Map.ErrorColor);
                     b.LeftClickEvent -= powerTower_LeftClick;
+                    t.Level = 1;
                     b.Deactivate();
                 }
             }
@@ -402,7 +404,7 @@ namespace TDA3Engine
                 //SelectedTower.GetText("Price").Value = String.Format("Precio: {0}", clickedTower.TotalCost);
                 //SelectedTower.GetText("TowerName").Value = clickedTower.Name + " " + (clickedTower.Level + 1).ToString();
 
-                if (clickedTower.UpgradeCost > PoderesTotales)
+                if (clickedTower.UpgradeCost > PoderesTotales && t.Level >= 2)
                 {
                     b.Texture = Session.Map.SmallErrorButtonTexture;
                     b.SetColor(Session.Map.ErrorColor);
@@ -586,6 +588,7 @@ namespace TDA3Engine
 
             if (clickedTower != null)
             {
+                
                 foreach (var b in SelectedTower.Buttons)
                 {
                     b.Value.Update(gameTime, Session.UI.mouse);
@@ -671,9 +674,20 @@ namespace TDA3Engine
                     //Validar respuesta
                     if (respuesta != "correcto" && respuesta != "falso" && respuesta != "" && RespCorrecta == int.Parse(respuesta))
                     {
-                        if(PoderesTotales<5)
+                        if (PoderesTotales < 5)
                             PoderesTotales++;
                         respuesta = "correcto";
+                        if (clickedTower != null)
+                        {
+                            if (PoderesTotales >= clickedTower.UpgradeCost && clickedTower.Level <= 1)
+                            {
+                                Button power = SelectedTower.GetButton("UpgradeTower");
+                                power.Texture = Session.Map.SmallNormalButtonTexture;
+                                power.SetColor(Session.Map.ForeColor);
+                                power.LeftClickEvent += powerTower_LeftClick;
+                                clickedTower.Level = 2;
+                            }
+                        }
                     }
                     else
                     {
