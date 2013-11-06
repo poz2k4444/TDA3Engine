@@ -174,12 +174,12 @@ namespace TDA3Engine
 
         internal void UpgradeTower(Tower t)
         {
-            if (t.UpgradeCost <= ActivePlayer.Money && t.Level + 1 < t.MaxLevel)
-            {
-                ActivePlayer.Money -= (uint)t.UpgradeCost;
-                MoneyDisplay = String.Format("Dinero Disponible: {0}", ActivePlayer.Money.ToString());
-                t.UpgradeBuff();
-            }
+            //if (t.UpgradeCost <= ActivePlayer.Money && t.Level + 1 < t.MaxLevel)
+            //{
+            //    ActivePlayer.Money -= (uint)t.UpgradeCost;
+            //    MoneyDisplay = String.Format("Dinero Disponible: {0}", ActivePlayer.Money.ToString());
+            t.UpgradeBuff();
+            //}
         }
 
         internal void SellTower(Tower t)
