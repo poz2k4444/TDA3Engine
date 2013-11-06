@@ -281,6 +281,7 @@ namespace TDA3Engine
             private set;
         }
 
+
         [ContentSerializerIgnore]
         public string DifficultyInfo
         {

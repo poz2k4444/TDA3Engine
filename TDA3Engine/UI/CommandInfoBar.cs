@@ -46,6 +46,12 @@ namespace TDA3Engine
             private set;
         }
 
+        public UIBlock SelectTablas
+        {
+            get;
+            private set;
+        }
+
         public Session Session
         {
             get;
@@ -66,7 +72,8 @@ namespace TDA3Engine
         Random random = new Random();
         int dere = 0;
         int izqui = 0;
-        private bool bandera = false;
+        List<int> tablasSeleccionadas = new List<int>();
+        private bool selectTablas = false;
 
         KeyboardState oldKeyboardState = Keyboard.GetState();
 
@@ -89,6 +96,7 @@ namespace TDA3Engine
             SelectedTower = new UIBlock(gd, s.Map.BorderTexture, s.Map.BorderColor, new Rectangle(r.X, MoneyAndTowers.Dimensions.Bottom + 10, r.Width - 5, 420), s);
             StatsAndControls = new UIBlock(gd, s.Map.BorderTexture, s.Map.BorderColor, new Rectangle(r.X, PurchaseTower.Dimensions.Bottom + 10, r.Width - 5, 200), s);
             TablasMultiplicar = new UIBlock(gd, null, s.Map.BorderColor, new Rectangle(r.X, r.Y, r.Width - 5, 50), s);
+            SelectTablas = new UIBlock(gd, null, s.Map.BorderColor, new Rectangle(r.X, r.Y, r.Width - 5, 300), s);
 
             s.HealthDecreased += new EventHandler(s_HealthDecreased);
         }
@@ -155,9 +163,7 @@ namespace TDA3Engine
         public void Initialize(SpriteFont sFont)
         {
             spriteFont = sFont;
-            InitializeMoneyAndTowers();
-            InitializePurchaseTower();
-            InitializeStatsAndControls();
+            InitializeTablas();
         }
 
         void clickableTower_LeftClickEvent(object sender, EventArgs e)
@@ -480,16 +486,70 @@ namespace TDA3Engine
 
         }
 
+        private void InitializeTablas()
+        {
+            int y = StatsAndControls.Dimensions.Top + padding;
+            Vector2 d = spriteFont.MeasureString(Session.HealthDisplay);
+            y += (int)(d.Y + spriteFont.LineSpacing);
+            string bt = "Lanzar siguiente ola";
+            Vector2 btdim = spriteFont.MeasureString(bt);
+            Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
+            Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
+
+            Vector2 bpos = new Vector2((int)(SelectedTower.Dimensions.Left + (tex.Width / 2.0f) +
+                (SelectedTower.Dimensions.Width - tex.Width) / 2.0f), (int)(y + (tex.Height / 2.0f)));
+
+            Vector2 tpos = new Vector2((int)(bpos.X - tex.Width / 2.0f + padding),
+                (int)(y + (tex.Height - btdim.Y) / 2.0f));
+
+            Button btnT1 = new Button(tex, new Vector2(bpos.X, 150), new Text("Tabla del 1", spriteFont, new Vector2(bpos.X - 62, 135)), c, clickedTower);
+            Button btnT2 = new Button(tex, new Vector2(bpos.X, 200), new Text("Tabla del 2", spriteFont, new Vector2(bpos.X - 62, 185)), c, clickedTower);
+            Button btnT3 = new Button(tex, new Vector2(bpos.X, 250), new Text("Tabla del 3", spriteFont, new Vector2(bpos.X - 62, 235)), c, clickedTower);
+            Button btnT4 = new Button(tex, new Vector2(bpos.X, 300), new Text("Tabla del 4", spriteFont, new Vector2(bpos.X - 62, 285)), c, clickedTower);
+            Button btnT5 = new Button(tex, new Vector2(bpos.X, 350), new Text("Tabla del 5", spriteFont, new Vector2(bpos.X - 62, 335)), c, clickedTower);
+            Button btnT6 = new Button(tex, new Vector2(bpos.X, 400), new Text("Tabla del 6", spriteFont, new Vector2(bpos.X - 62, 385)), c, clickedTower);
+            Button btnT7 = new Button(tex, new Vector2(bpos.X, 450), new Text("Tabla del 7", spriteFont, new Vector2(bpos.X - 62, 435)), c, clickedTower);
+            Button btnT8 = new Button(tex, new Vector2(bpos.X, 500), new Text("Tabla del 8", spriteFont, new Vector2(bpos.X - 62, 485)), c, clickedTower);
+            Button btnT9 = new Button(tex, new Vector2(bpos.X, 550), new Text("Tabla del 9", spriteFont, new Vector2(bpos.X - 62, 535)), c, clickedTower);
+            Button btnT10 = new Button(tex, new Vector2(bpos.X, 650), new Text("iniciar", spriteFont, new Vector2(bpos.X - 62, 635)), c, clickedTower);
+            btnT1.LeftClickEvent += new EventHandler(tablasSeleccionda1_LeftClick);
+            btnT2.LeftClickEvent += new EventHandler(tablasSeleccionda2_LeftClick);
+            btnT3.LeftClickEvent += new EventHandler(tablasSeleccionda3_LeftClick);
+            btnT4.LeftClickEvent += new EventHandler(tablasSeleccionda4_LeftClick);
+            btnT5.LeftClickEvent += new EventHandler(tablasSeleccionda5_LeftClick);
+            btnT6.LeftClickEvent += new EventHandler(tablasSeleccionda6_LeftClick);
+            btnT7.LeftClickEvent += new EventHandler(tablasSeleccionda7_LeftClick);
+            btnT8.LeftClickEvent += new EventHandler(tablasSeleccionda8_LeftClick);
+            btnT9.LeftClickEvent += new EventHandler(tablasSeleccionda9_LeftClick);
+            btnT10.LeftClickEvent += new EventHandler(iniciarJuego_LeftClick);
+
+            SelectTablas.Add("Tabla1", btnT1);
+            SelectTablas.Add("Tabla2", btnT2);
+            SelectTablas.Add("Tabla3", btnT3);
+            SelectTablas.Add("Tabla4", btnT4);
+            SelectTablas.Add("Tabla5", btnT5);
+            SelectTablas.Add("Tabla6", btnT6);
+            SelectTablas.Add("Tabla7", btnT7);
+            SelectTablas.Add("Tabla8", btnT8);
+            SelectTablas.Add("Tabla9", btnT9);
+            SelectTablas.Add("Iniciar", btnT10);
+        }
+
         public void CambiarTabla()
         {
             if (is_wave_active())
             {
-                if( Session.Map.Difficulty == 1)
+                do
+                {
+                    izqui = random.Next(1, 9);
+                } while (!tablasSeleccionadas.Contains(izqui));
+
+                /*if( Session.Map.Difficulty == 1)
                     izqui = random.Next(1, 3);
                 else if (Session.Map.Difficulty == 2)
                     izqui = random.Next(1, 6);
                 else if( Session.Map.Difficulty == 3)
-                    izqui = random.Next(1, 9);
+                    izqui = random.Next(1, 9);*/
                 dere = random.Next(1, 9);
                 RespCorrecta = izqui * dere;
                 string valorA = izqui + " X " + dere + " = ";
@@ -570,6 +630,107 @@ namespace TDA3Engine
             }
         }
 
+        void tablasSeleccionda1_LeftClick(object sender, EventArgs e)
+        {
+            tablasSeleccionadas.Add(1);
+            Button b = SelectTablas.GetButton("Tabla1");
+            b.Texture = Session.Map.SmallErrorButtonTexture;
+            b.SetColor(Session.Map.ErrorColor);
+            b.LeftClickEvent -= tablasSeleccionda1_LeftClick;
+            b.Deactivate();
+        }
+
+        void tablasSeleccionda2_LeftClick(object sender, EventArgs e)
+        {
+            tablasSeleccionadas.Add(2);
+            Button b = SelectTablas.GetButton("Tabla2");
+            b.Texture = Session.Map.SmallErrorButtonTexture;
+            b.SetColor(Session.Map.ErrorColor);
+            b.LeftClickEvent -= tablasSeleccionda2_LeftClick;
+            b.Deactivate();
+        }
+
+        void tablasSeleccionda3_LeftClick(object sender, EventArgs e)
+        {
+            tablasSeleccionadas.Add(3);
+            Button b = SelectTablas.GetButton("Tabla3");
+            b.Texture = Session.Map.SmallErrorButtonTexture;
+            b.SetColor(Session.Map.ErrorColor);
+            b.LeftClickEvent -= tablasSeleccionda3_LeftClick;
+            b.Deactivate();
+        }
+
+        void tablasSeleccionda4_LeftClick(object sender, EventArgs e)
+        {
+            tablasSeleccionadas.Add(4);
+            Button b = SelectTablas.GetButton("Tabla4");
+            b.Texture = Session.Map.SmallErrorButtonTexture;
+            b.SetColor(Session.Map.ErrorColor);
+            b.LeftClickEvent -= tablasSeleccionda4_LeftClick;
+            b.Deactivate();
+        }
+
+        void tablasSeleccionda5_LeftClick(object sender, EventArgs e)
+        {
+            tablasSeleccionadas.Add(5);
+            Button b = SelectTablas.GetButton("Tabla5");
+            b.Texture = Session.Map.SmallErrorButtonTexture;
+            b.SetColor(Session.Map.ErrorColor);
+            b.LeftClickEvent -= tablasSeleccionda5_LeftClick;
+            b.Deactivate();
+        }
+
+        void tablasSeleccionda6_LeftClick(object sender, EventArgs e)
+        {
+            tablasSeleccionadas.Add(6);
+            Button b = SelectTablas.GetButton("Tabla6");
+            b.Texture = Session.Map.SmallErrorButtonTexture;
+            b.SetColor(Session.Map.ErrorColor);
+            b.LeftClickEvent -= tablasSeleccionda6_LeftClick;
+            b.Deactivate();
+        }
+
+        void tablasSeleccionda7_LeftClick(object sender, EventArgs e)
+        {
+            tablasSeleccionadas.Add(7);
+            Button b = SelectTablas.GetButton("Tabla7");
+            b.Texture = Session.Map.SmallErrorButtonTexture;
+            b.SetColor(Session.Map.ErrorColor);
+            b.LeftClickEvent -= tablasSeleccionda7_LeftClick;
+            b.Deactivate();
+        }
+
+        void tablasSeleccionda8_LeftClick(object sender, EventArgs e)
+        {
+            tablasSeleccionadas.Add(8);
+            Button b = SelectTablas.GetButton("Tabla8");
+            b.Texture = Session.Map.SmallErrorButtonTexture;
+            b.SetColor(Session.Map.ErrorColor);
+            b.LeftClickEvent -= tablasSeleccionda8_LeftClick;
+            b.Deactivate();
+        }
+
+        void tablasSeleccionda9_LeftClick(object sender, EventArgs e)
+        {
+            tablasSeleccionadas.Add(9);
+            Button b = SelectTablas.GetButton("Tabla9");
+            b.Texture = Session.Map.SmallErrorButtonTexture;
+            b.SetColor(Session.Map.ErrorColor);
+            b.LeftClickEvent -= tablasSeleccionda9_LeftClick;
+            b.Deactivate();
+        }
+
+        void iniciarJuego_LeftClick(object sender, EventArgs e)
+        {
+            if (tablasSeleccionadas.Count() != 0)
+            {
+                InitializeMoneyAndTowers();
+                InitializePurchaseTower();
+                InitializeStatsAndControls();
+                selectTablas = true;
+            }
+        }
+
         private void ResetTowerReferences()
         {
             if (clickedTower != null) clickedTower = null;
@@ -578,182 +739,196 @@ namespace TDA3Engine
 
         public void Update(GameTime gameTime)
         {
-            MoneyAndTowers.GetText("Dinero").Value = Session.MoneyDisplay;
-            MoneyAndTowers.GetText("Torres").Value = Session.TowersDisplay;
-            Button lnw = StatsAndControls.GetButton("SiguienteOla");
-            Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
-            Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
-            lnw.Texture = tex;
-            lnw.SetColor(c);
-
-            if (clickedTower != null)
-            {
-                
-                foreach (var b in SelectedTower.Buttons)
-                {
-                    b.Value.Update(gameTime, Session.UI.mouse);
-                }
-            }
-            else
-            {
-                foreach (var b in PurchaseTower.Buttons)
-                {
-                    b.Value.Update(gameTime, Session.UI.mouse);
-                }
-            }
-            
-            foreach (var b in StatsAndControls.Buttons)
+            foreach (var b in SelectTablas.Buttons)
             {
                 b.Value.Update(gameTime, Session.UI.mouse);
             }
+            if (selectTablas)
+            {
+                MoneyAndTowers.GetText("Dinero").Value = Session.MoneyDisplay;
+                MoneyAndTowers.GetText("Torres").Value = Session.TowersDisplay;
+                Button lnw = StatsAndControls.GetButton("SiguienteOla");
+                Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
+                Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
+                lnw.Texture = tex;
+                lnw.SetColor(c);
 
-            if (is_wave_active()){
-                TablasMultiplicar.GetText("Respuesta").Value = respuesta;
-                TablasMultiplicar.GetText("Poder").Value = "Poderes: " + PoderesTotales;
-                if (oldKeyboardState.IsKeyDown(Keys.Back) && respuesta.Length > 0 && ElapsedTime <= 0) 
+                if (clickedTower != null)
                 {
-                    respuesta = respuesta.Remove(respuesta.Length - 1);
-                    ElapsedTime = 15;
-                }
-                if (respuesta.Length <= 2)
-                {
-                    if (oldKeyboardState.IsKeyDown(Keys.D0) && ElapsedTime <= 0)
-                    {
-                        respuesta += "0";
-                        ElapsedTime = 15;
-                    }
-                    else if (oldKeyboardState.IsKeyDown(Keys.D1) && ElapsedTime <= 0)
-                    {
-                        respuesta += "1";
-                        ElapsedTime = 15;
-                    }
-                    else if (oldKeyboardState.IsKeyDown(Keys.D2) && ElapsedTime <= 0)
-                    {
-                        respuesta += "2";
-                        ElapsedTime = 15;
-                    }
-                    else if (oldKeyboardState.IsKeyDown(Keys.D3) && ElapsedTime <= 0)
-                    {
-                        respuesta += "3";
-                        ElapsedTime = 15;
-                    }
-                    else if (oldKeyboardState.IsKeyDown(Keys.D4) && ElapsedTime <= 0)
-                    {
-                        respuesta += "4";
-                        ElapsedTime = 15;
-                    }
-                    else if (oldKeyboardState.IsKeyDown(Keys.D5) && ElapsedTime <= 0)
-                    {
-                        respuesta += "5";
-                        ElapsedTime = 15;
-                    }
-                    else if (oldKeyboardState.IsKeyDown(Keys.D6) && ElapsedTime <= 0)
-                    {
-                        respuesta += "6";
-                        ElapsedTime = 15;
-                    }
-                    else if (oldKeyboardState.IsKeyDown(Keys.D7) && ElapsedTime <= 0)
-                    {
-                        respuesta += "7";
-                        ElapsedTime = 15;
-                    }
-                    else if (oldKeyboardState.IsKeyDown(Keys.D8) && ElapsedTime <= 0)
-                    {
-                        respuesta += "8";
-                        ElapsedTime = 15;
-                    }
-                    else if (oldKeyboardState.IsKeyDown(Keys.D9) && ElapsedTime <= 0)
-                    {
-                        respuesta += "9";
-                        ElapsedTime = 15;
-                    }
 
-                }
-                if (oldKeyboardState.IsKeyDown(Keys.Enter) && ElapsedTime <= 0)
-                {
-                    //Validar respuesta
-                    if (respuesta != "correcto" && respuesta != "falso" && respuesta != "" && RespCorrecta == int.Parse(respuesta))
+                    foreach (var b in SelectedTower.Buttons)
                     {
-                        if (PoderesTotales < 5)
-                            PoderesTotales++;
-                        respuesta = "correcto";
-                        if ((object)clickedTower!=null)
+                        b.Value.Update(gameTime, Session.UI.mouse);
+                    }
+                }
+                else
+                {
+                    foreach (var b in PurchaseTower.Buttons)
+                    {
+                        b.Value.Update(gameTime, Session.UI.mouse);
+                    }
+                }
+
+                foreach (var b in StatsAndControls.Buttons)
+                {
+                    b.Value.Update(gameTime, Session.UI.mouse);
+                }
+
+                if (is_wave_active())
+                {
+                    TablasMultiplicar.GetText("Respuesta").Value = respuesta;
+                    TablasMultiplicar.GetText("Poder").Value = "Poderes: " + PoderesTotales;
+                    if (oldKeyboardState.IsKeyDown(Keys.Back) && respuesta.Length > 0 && ElapsedTime <= 0)
+                    {
+                        respuesta = respuesta.Remove(respuesta.Length - 1);
+                        ElapsedTime = 15;
+                    }
+                    if (respuesta.Length <= 2)
+                    {
+                        if (oldKeyboardState.IsKeyDown(Keys.D0) && ElapsedTime <= 0)
                         {
-                            if (PoderesTotales >= clickedTower.UpgradeCost && clickedTower.Level <= 1)
+                            respuesta += "0";
+                            ElapsedTime = 15;
+                        }
+                        else if (oldKeyboardState.IsKeyDown(Keys.D1) && ElapsedTime <= 0)
+                        {
+                            respuesta += "1";
+                            ElapsedTime = 15;
+                        }
+                        else if (oldKeyboardState.IsKeyDown(Keys.D2) && ElapsedTime <= 0)
+                        {
+                            respuesta += "2";
+                            ElapsedTime = 15;
+                        }
+                        else if (oldKeyboardState.IsKeyDown(Keys.D3) && ElapsedTime <= 0)
+                        {
+                            respuesta += "3";
+                            ElapsedTime = 15;
+                        }
+                        else if (oldKeyboardState.IsKeyDown(Keys.D4) && ElapsedTime <= 0)
+                        {
+                            respuesta += "4";
+                            ElapsedTime = 15;
+                        }
+                        else if (oldKeyboardState.IsKeyDown(Keys.D5) && ElapsedTime <= 0)
+                        {
+                            respuesta += "5";
+                            ElapsedTime = 15;
+                        }
+                        else if (oldKeyboardState.IsKeyDown(Keys.D6) && ElapsedTime <= 0)
+                        {
+                            respuesta += "6";
+                            ElapsedTime = 15;
+                        }
+                        else if (oldKeyboardState.IsKeyDown(Keys.D7) && ElapsedTime <= 0)
+                        {
+                            respuesta += "7";
+                            ElapsedTime = 15;
+                        }
+                        else if (oldKeyboardState.IsKeyDown(Keys.D8) && ElapsedTime <= 0)
+                        {
+                            respuesta += "8";
+                            ElapsedTime = 15;
+                        }
+                        else if (oldKeyboardState.IsKeyDown(Keys.D9) && ElapsedTime <= 0)
+                        {
+                            respuesta += "9";
+                            ElapsedTime = 15;
+                        }
+
+                    }
+                    if (oldKeyboardState.IsKeyDown(Keys.Enter) && ElapsedTime <= 0)
+                    {
+                        //Validar respuesta
+                        if (respuesta != "correcto" && respuesta != "falso" && respuesta != "" && RespCorrecta == int.Parse(respuesta))
+                        {
+                            if (PoderesTotales < 5)
+                                PoderesTotales++;
+                            respuesta = "correcto";
+                            if ((object)clickedTower != null)
                             {
-                                Button power = SelectedTower.GetButton("UpgradeTower");
-                                power.Texture = Session.Map.SmallNormalButtonTexture;
-                                power.SetColor(Session.Map.ForeColor);
-                                power.LeftClickEvent += powerTower_LeftClick;
-                                clickedTower.Level = 2;
+                                if (PoderesTotales >= clickedTower.UpgradeCost && clickedTower.Level <= 1)
+                                {
+                                    Button power = SelectedTower.GetButton("UpgradeTower");
+                                    power.Texture = Session.Map.SmallNormalButtonTexture;
+                                    power.SetColor(Session.Map.ForeColor);
+                                    power.LeftClickEvent += powerTower_LeftClick;
+                                    clickedTower.Level = 2;
+                                }
                             }
                         }
+                        else
+                        {
+                            respuesta = "falso";
+                        }
+                        ElapsedTime = 15;
                     }
-                    else
+                    if (PreguntaTime == 0)
                     {
-                        respuesta = "falso";
+                        PreguntaTime = 600;
+                        respuesta = "";
+                        CambiarTabla();
                     }
-                    ElapsedTime = 15;
-                }
-                if (PreguntaTime == 0)
-                {
-                    PreguntaTime = 600;
-                    respuesta = "";
-                    CambiarTabla();
-                }
-                ElapsedTime--;
-                PreguntaTime--;
+                    ElapsedTime--;
+                    PreguntaTime--;
 
-                oldKeyboardState = Keyboard.GetState();            
-             }
-            //Button isb = StatsAndControls.GetButton("IncreaseSpeed");
-            //Button dsb = StatsAndControls.GetButton("DecreaseSpeed");
-            //if (Session.Speed >= Session.MaxSpeed)
-            //{
-              //  isb.Texture = Session.Map.LargeErrorButtonTexture;
+                    oldKeyboardState = Keyboard.GetState();
+                }
+                //Button isb = StatsAndControls.GetButton("IncreaseSpeed");
+                //Button dsb = StatsAndControls.GetButton("DecreaseSpeed");
+                //if (Session.Speed >= Session.MaxSpeed)
+                //{
+                //  isb.Texture = Session.Map.LargeErrorButtonTexture;
                 //isb.SetColor(Session.Map.ErrorColor);
                 //dsb.Texture = Session.Map.LargeNormalButtonTexture;
                 //dsb.SetColor(Session.Map.ForeColor);
-            //}
-            //else if (Session.Speed <= Session.MinSpeed)
-            //{
-              //  isb.Texture = Session.Map.LargeNormalButtonTexture;
+                //}
+                //else if (Session.Speed <= Session.MinSpeed)
+                //{
+                //  isb.Texture = Session.Map.LargeNormalButtonTexture;
                 //isb.SetColor(Session.Map.ForeColor);
                 //dsb.Texture = Session.Map.LargeErrorButtonTexture;
                 //dsb.SetColor(Session.Map.ErrorColor);
-            //}
-            //else
-            //{
-              //  isb.Texture = Session.Map.LargeNormalButtonTexture;
+                //}
+                //else
+                //{
+                //  isb.Texture = Session.Map.LargeNormalButtonTexture;
                 //isb.SetColor(Session.Map.ForeColor);
                 //dsb.Texture = Session.Map.LargeNormalButtonTexture;
                 //dsb.SetColor(Session.Map.ForeColor);
-            //}
+                //}
 
-            //if (waveindex != Session.Map.WaveIndex)
-            //{
-              //  waveindex = Session.Map.WaveIndex;
-               // StatsAndControls.GetText("Ola").Value = String.Format("Ola {0} de {1}", waveindex + 1, Session.Map.WaveList.Count);
-            //}
-
+                //if (waveindex != Session.Map.WaveIndex)
+                //{
+                //  waveindex = Session.Map.WaveIndex;
+                // StatsAndControls.GetText("Ola").Value = String.Format("Ola {0} de {1}", waveindex + 1, Session.Map.WaveList.Count);
+                //}
+            }
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, SpriteFont spriteFont)
         {
             spriteBatch.Draw(background, Rectangle, Color.White);
-            MoneyAndTowers.Draw(gameTime, spriteBatch, spriteFont);
-            TablasMultiplicar.Draw(gameTime, spriteBatch, spriteFont);
-
-            if (clickedTower != null)
+            if (selectTablas)
             {
-                SelectedTower.Draw(gameTime, spriteBatch, spriteFont);
+                MoneyAndTowers.Draw(gameTime, spriteBatch, spriteFont);
+                TablasMultiplicar.Draw(gameTime, spriteBatch, spriteFont);
+
+                if (clickedTower != null)
+                {
+                    SelectedTower.Draw(gameTime, spriteBatch, spriteFont);
+                }
+                else
+                {
+                    PurchaseTower.Draw(gameTime, spriteBatch, spriteFont);
+                }
+
+                StatsAndControls.Draw(gameTime, spriteBatch, spriteFont);
             }
             else
             {
-                PurchaseTower.Draw(gameTime, spriteBatch, spriteFont);
+                SelectTablas.Draw(gameTime, spriteBatch, spriteFont);
             }
-
-            StatsAndControls.Draw(gameTime, spriteBatch, spriteFont);
         }
     }
 }
