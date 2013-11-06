@@ -66,6 +66,7 @@ namespace TDA3Engine
         Random random = new Random();
         int dere = 0;
         int izqui = 0;
+        private bool bandera = false;
 
         KeyboardState oldKeyboardState = Keyboard.GetState();
 
@@ -235,7 +236,7 @@ namespace TDA3Engine
             {
                 int pb = AddUpgradeButton(price.Rectangle.Bottom + padding);
                 //AddSellButton(pb + padding);
-                AddSellButton(padding);
+                //AddSellButton(padding);
             }
             else
             {
@@ -284,9 +285,9 @@ namespace TDA3Engine
         private int AddUpgradeButton(int y)
         {
             Button b = null;
-            if (clickedTower.UpgradeCost <= Session.ActivePlayer.Money && clickedTower.Level + 1 < clickedTower.MaxLevel)
+            if (clickedTower.UpgradeCost <= PoderesTotales)
             {
-                string bt = String.Format("Mejorar (Costs {0})", clickedTower.UpgradeCost);
+                string bt = String.Format("Poderes: {0}", clickedTower.UpgradeCost);
                 Vector2 btdim = spriteFont.MeasureString(bt);
                 Vector2 bpos = new Vector2((int)(SelectedTower.Dimensions.Left + (Session.Map.SmallNormalButtonTexture.Width / 2.0f) +
                     (SelectedTower.Dimensions.Width - Session.Map.SmallNormalButtonTexture.Width) / 2.0f), (int)(y + (Session.Map.SmallNormalButtonTexture.Height / 2.0f)));
@@ -295,12 +296,12 @@ namespace TDA3Engine
                     (int)(y + (Session.Map.SmallNormalButtonTexture.Height - btdim.Y) / 2.0f));
 
                 b = new Button(Session.Map.SmallNormalButtonTexture, bpos, new Text(bt, spriteFont, tpos), Session.Map.ForeColor, clickedTower);
-                b.LeftClickEvent += new EventHandler(upgradeTower_LeftClick);
+                b.LeftClickEvent += new EventHandler(powerTower_LeftClick);
                 SelectedTower.Add("UpgradeTower", b);
             }
             else
             {
-                string bt = String.Format("Mejorar (Costs {0})", clickedTower.UpgradeCost);
+                string bt = String.Format("Poderes: {0}", clickedTower.UpgradeCost);
                 Vector2 btdim = spriteFont.MeasureString(bt);
 
                 Vector2 bpos = new Vector2((int)(SelectedTower.Dimensions.Left + (Session.Map.SmallErrorButtonTexture.Width / 2.0f) +
@@ -311,7 +312,7 @@ namespace TDA3Engine
 
                 b = new Button(Session.Map.SmallErrorButtonTexture, bpos, new Text(bt, spriteFont, tpos), Session.Map.ErrorColor, clickedTower);
                 b.Deactivate();
-                SelectedTower.Add("Mejorar", b);
+                SelectedTower.Add("UpgradeTower", b);
             }
             return (int)(b.Position.Y - b.Origin.Y) + b.Texture.Height;
         }
@@ -361,8 +362,31 @@ namespace TDA3Engine
         }
         void powerTower_LeftClick(object sender, EventArgs e)
         {
-            if(PoderesTotales>0)
-                PoderesTotales--;
+            Button b = sender as Button;
+            if (b != null)
+            {
+                if(clickedTower.UpgradeCost <= PoderesTotales){
+                Tower t = b.StoredObject as Tower;
+                PoderesTotales = PoderesTotales - clickedTower.UpgradeCost;
+                Session.UpgradeTower(t);
+                b.ButtonText.Value = String.Format("Poderes: {0}", clickedTower.UpgradeCost);
+                //SelectedTower.GetButton("SellTower").ButtonText.Value = String.Format("Vender (Recibes {0})", (int)(clickedTower.TotalCost * clickedTower.SellScalar));
+                //SelectedTower.GetText("Stats").Value = clickedTower.CurrentStatistics.ToShortString();
+                //SelectedTower.GetText("Price").Value = String.Format("Precio: {0}", clickedTower.TotalCost);
+                //SelectedTower.GetText("TowerName").Value = clickedTower.Name + " " + (clickedTower.Level + 1).ToString();
+
+                }else
+                {
+                    b.Texture = Session.Map.SmallErrorButtonTexture;
+                    b.SetColor(Session.Map.ErrorColor);
+                    b.LeftClickEvent -= powerTower_LeftClick;
+                    b.Deactivate();
+                }
+            }
+            //if (PoderesTotales > 0)
+            //{
+            //    PoderesTotales--;
+            //}
         }
 
         void upgradeTower_LeftClick(object sender, EventArgs e)
@@ -373,12 +397,12 @@ namespace TDA3Engine
                 Tower t = b.StoredObject as Tower;
                 Session.UpgradeTower(t);
                 b.ButtonText.Value = String.Format("Mejorar (Cuesta {0})", clickedTower.UpgradeCost);
-                SelectedTower.GetButton("SellTower").ButtonText.Value = String.Format("Vender (Recibes {0})", (int)(clickedTower.TotalCost * clickedTower.SellScalar));
-                SelectedTower.GetText("Stats").Value = clickedTower.CurrentStatistics.ToShortString();
-                SelectedTower.GetText("Price").Value = String.Format("Precio: {0}", clickedTower.TotalCost);
-                SelectedTower.GetText("TowerName").Value = clickedTower.Name + " " + (clickedTower.Level + 1).ToString();
+                //SelectedTower.GetButton("SellTower").ButtonText.Value = String.Format("Vender (Recibes {0})", (int)(clickedTower.TotalCost * clickedTower.SellScalar));
+                //SelectedTower.GetText("Stats").Value = clickedTower.CurrentStatistics.ToShortString();
+                //SelectedTower.GetText("Price").Value = String.Format("Precio: {0}", clickedTower.TotalCost);
+                //SelectedTower.GetText("TowerName").Value = clickedTower.Name + " " + (clickedTower.Level + 1).ToString();
 
-                if (clickedTower.UpgradeCost > Session.ActivePlayer.Money || clickedTower.Level == clickedTower.MaxLevel)
+                if (clickedTower.UpgradeCost > PoderesTotales)
                 {
                     b.Texture = Session.Map.SmallErrorButtonTexture;
                     b.SetColor(Session.Map.ErrorColor);

@@ -113,7 +113,7 @@ namespace TDA3Engine
         [ContentSerializerIgnore]
         public int UpgradeCost
         {
-            get { return ((Level + 1) * Cost) / 2; }
+            get { return Convert.ToInt32(Cost * 0.01); }
         }
 
         [ContentSerializerIgnore]
