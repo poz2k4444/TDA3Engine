@@ -382,7 +382,7 @@ namespace TDA3Engine
                 //SelectedTower.GetText("Price").Value = String.Format("Precio: {0}", clickedTower.TotalCost);
                 //SelectedTower.GetText("TowerName").Value = clickedTower.Name + " " + (clickedTower.Level + 1).ToString();
 
-                if (clickedTower.UpgradeCost > PoderesTotales && t.Level == 2)
+                if ((clickedTower.UpgradeCost > PoderesTotales && t.Level == 2) || t.poder)
                 {
                     b.Texture = Session.Map.SmallErrorButtonTexture;
                     b.SetColor(Session.Map.ErrorColor);
@@ -541,7 +541,7 @@ namespace TDA3Engine
             {
                 do
                 {
-                    izqui = random.Next(1, 10);
+                    izqui = random.Next(1, 9);
                 } while (!tablasSeleccionadas.Contains(izqui));
 
                 /*if( Session.Map.Difficulty == 1)
@@ -550,7 +550,7 @@ namespace TDA3Engine
                     izqui = random.Next(1, 6);
                 else if( Session.Map.Difficulty == 3)
                     izqui = random.Next(1, 9);*/
-                dere = random.Next(1, 10);
+                dere = random.Next(1, 9);
                 RespCorrecta = izqui * dere;
                 string valorA = izqui + " X " + dere + " = ";
                 TablasMultiplicar.GetText("Pregunta").Value = valorA;
@@ -728,27 +728,6 @@ namespace TDA3Engine
                 InitializePurchaseTower();
                 InitializeStatsAndControls();
                 selectTablas = true;
-
-                Button b1 = SelectTablas.GetButton("Tabla1");
-                b1.LeftClickEvent -= tablasSeleccionda1_LeftClick;
-                Button b2 = SelectTablas.GetButton("Tabla2");
-                b2.LeftClickEvent -= tablasSeleccionda2_LeftClick;
-                Button b3 = SelectTablas.GetButton("Tabla3");
-                b3.LeftClickEvent -= tablasSeleccionda3_LeftClick;
-                Button b4 = SelectTablas.GetButton("Tabla4");
-                b4.LeftClickEvent -= tablasSeleccionda4_LeftClick;
-                Button b5 = SelectTablas.GetButton("Tabla5");
-                b5.LeftClickEvent -= tablasSeleccionda5_LeftClick;
-                Button b6 = SelectTablas.GetButton("Tabla6");
-                b6.LeftClickEvent -= tablasSeleccionda6_LeftClick;
-                Button b7 = SelectTablas.GetButton("Tabla7");
-                b7.LeftClickEvent -= tablasSeleccionda7_LeftClick;
-                Button b8 = SelectTablas.GetButton("Tabla8");
-                b8.LeftClickEvent -= tablasSeleccionda8_LeftClick;
-                Button b9 = SelectTablas.GetButton("Tabla9");
-                b9.LeftClickEvent -= tablasSeleccionda9_LeftClick;
-
-
             }
         }
 
@@ -760,7 +739,32 @@ namespace TDA3Engine
 
         public void Update(GameTime gameTime)
         {
+<<<<<<< HEAD
             foreach (var b in SelectTablas.Buttons)
+=======
+            MoneyAndTowers.GetText("Dinero").Value = Session.MoneyDisplay;
+            MoneyAndTowers.GetText("Torres").Value = Session.TowersDisplay;
+            Button lnw = StatsAndControls.GetButton("SiguienteOla");
+            Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
+            Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
+            lnw.Texture = tex;
+            lnw.SetColor(c);
+
+            if ((object)clickedTower != null && clickedTower.IsPlaced)
+            {
+                if (PoderesTotales >= clickedTower.UpgradeCost && clickedTower.Level <= 1 && !clickedTower.poder)
+                {
+                    clickedTower.Level = 2;
+                    Button power = SelectedTower.GetButton("UpgradeTower");
+                    power.Texture = Session.Map.SmallNormalButtonTexture;
+                    power.SetColor(Session.Map.ForeColor);
+                    power.LeftClickEvent += powerTower_LeftClick;
+                    
+                }
+            }
+
+            if (clickedTower != null)
+>>>>>>> f3ab29685726dc49f22e7c03ed189676727787ce
             {
                 b.Value.Update(gameTime, Session.UI.mouse);
             }
@@ -773,19 +777,6 @@ namespace TDA3Engine
                 Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
                 lnw.Texture = tex;
                 lnw.SetColor(c);
-
-                if ((object)clickedTower != null && clickedTower.IsPlaced)
-                {
-                    if (PoderesTotales >= clickedTower.UpgradeCost && clickedTower.Level <= 1 && !clickedTower.poder)
-                    {
-                        clickedTower.Level = 2;
-                        Button power = SelectedTower.GetButton("UpgradeTower");
-                        power.Texture = Session.Map.SmallNormalButtonTexture;
-                        power.SetColor(Session.Map.ForeColor);
-                        power.LeftClickEvent += powerTower_LeftClick;
-
-                    }
-                }
 
                 if (clickedTower != null)
                 {
@@ -873,18 +864,35 @@ namespace TDA3Engine
                     }
                     if (oldKeyboardState.IsKeyDown(Keys.Enter) && ElapsedTime <= 0)
                     {
+<<<<<<< HEAD
                         //Validar respuesta
                         if (respuesta != "correcto" && respuesta != "falso" && respuesta != "" && RespCorrecta == int.Parse(respuesta))
                         {
                             if (PoderesTotales < 5)
                                 PoderesTotales++;
                             respuesta = "correcto";
+                            if ((object)clickedTower != null)
+                            {
+                                if (PoderesTotales >= clickedTower.UpgradeCost && clickedTower.Level <= 1)
+                                {
+                                    Button power = SelectedTower.GetButton("UpgradeTower");
+                                    power.Texture = Session.Map.SmallNormalButtonTexture;
+                                    power.SetColor(Session.Map.ForeColor);
+                                    power.LeftClickEvent += powerTower_LeftClick;
+                                    clickedTower.Level = 2;
+                                }
+                            }
                         }
                         else
                         {
                             respuesta = "falso";
                         }
                         ElapsedTime = 15;
+=======
+                        if (PoderesTotales < 5)
+                            PoderesTotales++;
+                        respuesta = "correcto";
+>>>>>>> f3ab29685726dc49f22e7c03ed189676727787ce
                     }
                     if (PreguntaTime == 0)
                     {
