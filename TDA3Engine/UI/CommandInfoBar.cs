@@ -511,7 +511,7 @@ namespace TDA3Engine
             Button btnT7 = new Button(tex, new Vector2(bpos.X, 450), new Text("Tabla del 7", spriteFont, new Vector2(bpos.X - 62, 435)), c, clickedTower);
             Button btnT8 = new Button(tex, new Vector2(bpos.X, 500), new Text("Tabla del 8", spriteFont, new Vector2(bpos.X - 62, 485)), c, clickedTower);
             Button btnT9 = new Button(tex, new Vector2(bpos.X, 550), new Text("Tabla del 9", spriteFont, new Vector2(bpos.X - 62, 535)), c, clickedTower);
-            Button btnT10 = new Button(tex, new Vector2(bpos.X, 650), new Text("iniciar", spriteFont, new Vector2(bpos.X - 62, 635)), c, clickedTower);
+            Button btnT10 = new Button(tex, new Vector2(bpos.X, 650), new Text("Iniciar", spriteFont, new Vector2(bpos.X - 62, 635)), c, clickedTower);
             btnT1.LeftClickEvent += new EventHandler(tablasSeleccionda1_LeftClick);
             btnT2.LeftClickEvent += new EventHandler(tablasSeleccionda2_LeftClick);
             btnT3.LeftClickEvent += new EventHandler(tablasSeleccionda3_LeftClick);
@@ -827,7 +827,8 @@ namespace TDA3Engine
                 b8.LeftClickEvent -= tablasSeleccionda8_LeftClick;
                 Button b9 = SelectTablas.GetButton("Tabla9");
                 b9.LeftClickEvent -= tablasSeleccionda9_LeftClick;
-
+                Button b10 = SelectTablas.GetButton("Iniciar");
+                b10.LeftClickEvent -= iniciarJuego_LeftClick;
 
             }
         }
