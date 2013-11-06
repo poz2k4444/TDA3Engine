@@ -68,6 +68,13 @@ namespace TDA3Engine
             private set;
         }
 
+        [ContentSerializerIgnore]
+        public Boolean poder
+        {
+            get;
+            private set;
+        }
+
         [ContentSerializer]
         private string TextureAsset
         {
@@ -330,6 +337,8 @@ namespace TDA3Engine
             bulletBase.Initialize(map, contentManager);
 
             upgraded = false;
+            poder = false;
+
 
             timer = CurrentStatistics.Speed;
 
@@ -367,6 +376,7 @@ namespace TDA3Engine
 
         public void UpgradeBuff()
         {
+            poder = true;
             upgraded = true;
             bufftime = 2;
         }
@@ -385,6 +395,7 @@ namespace TDA3Engine
                 UpdateBuff(gameTime);
                 if (bufftimer > bufftime)
                 {
+                    poder = false;
                     upgraded = false;
                     bufftimer = 0.0f;
                     bufftime = 0.0f;

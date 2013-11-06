@@ -376,7 +376,7 @@ namespace TDA3Engine
                 //SelectedTower.GetText("Price").Value = String.Format("Precio: {0}", clickedTower.TotalCost);
                 //SelectedTower.GetText("TowerName").Value = clickedTower.Name + " " + (clickedTower.Level + 1).ToString();
 
-                if (clickedTower.UpgradeCost > PoderesTotales && t.Level == 2)
+                if ((clickedTower.UpgradeCost > PoderesTotales && t.Level == 2) || t.poder)
                 {
                     b.Texture = Session.Map.SmallErrorButtonTexture;
                     b.SetColor(Session.Map.ErrorColor);
@@ -586,6 +586,19 @@ namespace TDA3Engine
             lnw.Texture = tex;
             lnw.SetColor(c);
 
+            if ((object)clickedTower != null && clickedTower.IsPlaced)
+            {
+                if (PoderesTotales >= clickedTower.UpgradeCost && clickedTower.Level <= 1 && !clickedTower.poder)
+                {
+                    clickedTower.Level = 2;
+                    Button power = SelectedTower.GetButton("UpgradeTower");
+                    power.Texture = Session.Map.SmallNormalButtonTexture;
+                    power.SetColor(Session.Map.ForeColor);
+                    power.LeftClickEvent += powerTower_LeftClick;
+                    
+                }
+            }
+
             if (clickedTower != null)
             {
                 
@@ -677,17 +690,6 @@ namespace TDA3Engine
                         if (PoderesTotales < 5)
                             PoderesTotales++;
                         respuesta = "correcto";
-                        if ((object)clickedTower!=null)
-                        {
-                            if (PoderesTotales >= clickedTower.UpgradeCost && clickedTower.Level <= 1)
-                            {
-                                Button power = SelectedTower.GetButton("UpgradeTower");
-                                power.Texture = Session.Map.SmallNormalButtonTexture;
-                                power.SetColor(Session.Map.ForeColor);
-                                power.LeftClickEvent += powerTower_LeftClick;
-                                clickedTower.Level = 2;
-                            }
-                        }
                     }
                     else
                     {
