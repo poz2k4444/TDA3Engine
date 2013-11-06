@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -382,7 +382,7 @@ namespace TDA3Engine
                 //SelectedTower.GetText("Price").Value = String.Format("Precio: {0}", clickedTower.TotalCost);
                 //SelectedTower.GetText("TowerName").Value = clickedTower.Name + " " + (clickedTower.Level + 1).ToString();
 
-                if (clickedTower.UpgradeCost > PoderesTotales && t.Level == 2)
+                if ((clickedTower.UpgradeCost > PoderesTotales && t.Level == 2) || t.poder)
                 {
                     b.Texture = Session.Map.SmallErrorButtonTexture;
                     b.SetColor(Session.Map.ErrorColor);
@@ -739,171 +739,166 @@ namespace TDA3Engine
 
         public void Update(GameTime gameTime)
         {
-            foreach (var b in SelectTablas.Buttons)
+            MoneyAndTowers.GetText("Dinero").Value = Session.MoneyDisplay;
+            MoneyAndTowers.GetText("Torres").Value = Session.TowersDisplay;
+            Button lnw = StatsAndControls.GetButton("SiguienteOla");
+            Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
+            Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
+            lnw.Texture = tex;
+            lnw.SetColor(c);
+
+            if ((object)clickedTower != null && clickedTower.IsPlaced)
             {
-                b.Value.Update(gameTime, Session.UI.mouse);
+                if (PoderesTotales >= clickedTower.UpgradeCost && clickedTower.Level <= 1 && !clickedTower.poder)
+                {
+                    clickedTower.Level = 2;
+                    Button power = SelectedTower.GetButton("UpgradeTower");
+                    power.Texture = Session.Map.SmallNormalButtonTexture;
+                    power.SetColor(Session.Map.ForeColor);
+                    power.LeftClickEvent += powerTower_LeftClick;
+                    
+                }
             }
-            if (selectTablas)
+
+            if (clickedTower != null)
             {
-                MoneyAndTowers.GetText("Dinero").Value = Session.MoneyDisplay;
-                MoneyAndTowers.GetText("Torres").Value = Session.TowersDisplay;
-                Button lnw = StatsAndControls.GetButton("SiguienteOla");
-                Texture2D tex = Session.Map.State == MapState.WaveDelay ? Session.Map.SmallNormalButtonTexture : Session.Map.SmallErrorButtonTexture;
-                Color c = Session.Map.State == MapState.WaveDelay ? Session.Map.ForeColor : Session.Map.ErrorColor;
-                lnw.Texture = tex;
-                lnw.SetColor(c);
-
-                if (clickedTower != null)
-                {
-
-                    foreach (var b in SelectedTower.Buttons)
-                    {
-                        b.Value.Update(gameTime, Session.UI.mouse);
-                    }
-                }
-                else
-                {
-                    foreach (var b in PurchaseTower.Buttons)
-                    {
-                        b.Value.Update(gameTime, Session.UI.mouse);
-                    }
-                }
-
-                foreach (var b in StatsAndControls.Buttons)
+                
+                foreach (var b in SelectedTower.Buttons)
                 {
                     b.Value.Update(gameTime, Session.UI.mouse);
                 }
-
-                if (is_wave_active())
+            }
+            else
+            {
+                foreach (var b in PurchaseTower.Buttons)
                 {
-                    TablasMultiplicar.GetText("Respuesta").Value = respuesta;
-                    TablasMultiplicar.GetText("Poder").Value = "Poderes: " + PoderesTotales;
-                    if (oldKeyboardState.IsKeyDown(Keys.Back) && respuesta.Length > 0 && ElapsedTime <= 0)
-                    {
-                        respuesta = respuesta.Remove(respuesta.Length - 1);
-                        ElapsedTime = 15;
-                    }
-                    if (respuesta.Length <= 2)
-                    {
-                        if (oldKeyboardState.IsKeyDown(Keys.D0) && ElapsedTime <= 0)
-                        {
-                            respuesta += "0";
-                            ElapsedTime = 15;
-                        }
-                        else if (oldKeyboardState.IsKeyDown(Keys.D1) && ElapsedTime <= 0)
-                        {
-                            respuesta += "1";
-                            ElapsedTime = 15;
-                        }
-                        else if (oldKeyboardState.IsKeyDown(Keys.D2) && ElapsedTime <= 0)
-                        {
-                            respuesta += "2";
-                            ElapsedTime = 15;
-                        }
-                        else if (oldKeyboardState.IsKeyDown(Keys.D3) && ElapsedTime <= 0)
-                        {
-                            respuesta += "3";
-                            ElapsedTime = 15;
-                        }
-                        else if (oldKeyboardState.IsKeyDown(Keys.D4) && ElapsedTime <= 0)
-                        {
-                            respuesta += "4";
-                            ElapsedTime = 15;
-                        }
-                        else if (oldKeyboardState.IsKeyDown(Keys.D5) && ElapsedTime <= 0)
-                        {
-                            respuesta += "5";
-                            ElapsedTime = 15;
-                        }
-                        else if (oldKeyboardState.IsKeyDown(Keys.D6) && ElapsedTime <= 0)
-                        {
-                            respuesta += "6";
-                            ElapsedTime = 15;
-                        }
-                        else if (oldKeyboardState.IsKeyDown(Keys.D7) && ElapsedTime <= 0)
-                        {
-                            respuesta += "7";
-                            ElapsedTime = 15;
-                        }
-                        else if (oldKeyboardState.IsKeyDown(Keys.D8) && ElapsedTime <= 0)
-                        {
-                            respuesta += "8";
-                            ElapsedTime = 15;
-                        }
-                        else if (oldKeyboardState.IsKeyDown(Keys.D9) && ElapsedTime <= 0)
-                        {
-                            respuesta += "9";
-                            ElapsedTime = 15;
-                        }
-
-                    }
-                    if (oldKeyboardState.IsKeyDown(Keys.Enter) && ElapsedTime <= 0)
-                    {
-                        //Validar respuesta
-                        if (respuesta != "correcto" && respuesta != "falso" && respuesta != "" && RespCorrecta == int.Parse(respuesta))
-                        {
-                            if (PoderesTotales < 5)
-                                PoderesTotales++;
-                            respuesta = "correcto";
-                            if ((object)clickedTower != null)
-                            {
-                                if (PoderesTotales >= clickedTower.UpgradeCost && clickedTower.Level <= 1)
-                                {
-                                    Button power = SelectedTower.GetButton("UpgradeTower");
-                                    power.Texture = Session.Map.SmallNormalButtonTexture;
-                                    power.SetColor(Session.Map.ForeColor);
-                                    power.LeftClickEvent += powerTower_LeftClick;
-                                    clickedTower.Level = 2;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            respuesta = "falso";
-                        }
-                        ElapsedTime = 15;
-                    }
-                    if (PreguntaTime == 0)
-                    {
-                        PreguntaTime = 600;
-                        respuesta = "";
-                        CambiarTabla();
-                    }
-                    ElapsedTime--;
-                    PreguntaTime--;
-
-                    oldKeyboardState = Keyboard.GetState();
+                    b.Value.Update(gameTime, Session.UI.mouse);
                 }
-                //Button isb = StatsAndControls.GetButton("IncreaseSpeed");
-                //Button dsb = StatsAndControls.GetButton("DecreaseSpeed");
-                //if (Session.Speed >= Session.MaxSpeed)
-                //{
-                //  isb.Texture = Session.Map.LargeErrorButtonTexture;
+            }
+            
+            foreach (var b in StatsAndControls.Buttons)
+            {
+                b.Value.Update(gameTime, Session.UI.mouse);
+            }
+
+            if (is_wave_active()){
+                TablasMultiplicar.GetText("Respuesta").Value = respuesta;
+                TablasMultiplicar.GetText("Poder").Value = "Poderes: " + PoderesTotales;
+                if (oldKeyboardState.IsKeyDown(Keys.Back) && respuesta.Length > 0 && ElapsedTime <= 0) 
+                {
+                    respuesta = respuesta.Remove(respuesta.Length - 1);
+                    ElapsedTime = 15;
+                }
+                if (respuesta.Length <= 2)
+                {
+                    if (oldKeyboardState.IsKeyDown(Keys.D0) && ElapsedTime <= 0)
+                    {
+                        respuesta += "0";
+                        ElapsedTime = 15;
+                    }
+                    else if (oldKeyboardState.IsKeyDown(Keys.D1) && ElapsedTime <= 0)
+                    {
+                        respuesta += "1";
+                        ElapsedTime = 15;
+                    }
+                    else if (oldKeyboardState.IsKeyDown(Keys.D2) && ElapsedTime <= 0)
+                    {
+                        respuesta += "2";
+                        ElapsedTime = 15;
+                    }
+                    else if (oldKeyboardState.IsKeyDown(Keys.D3) && ElapsedTime <= 0)
+                    {
+                        respuesta += "3";
+                        ElapsedTime = 15;
+                    }
+                    else if (oldKeyboardState.IsKeyDown(Keys.D4) && ElapsedTime <= 0)
+                    {
+                        respuesta += "4";
+                        ElapsedTime = 15;
+                    }
+                    else if (oldKeyboardState.IsKeyDown(Keys.D5) && ElapsedTime <= 0)
+                    {
+                        respuesta += "5";
+                        ElapsedTime = 15;
+                    }
+                    else if (oldKeyboardState.IsKeyDown(Keys.D6) && ElapsedTime <= 0)
+                    {
+                        respuesta += "6";
+                        ElapsedTime = 15;
+                    }
+                    else if (oldKeyboardState.IsKeyDown(Keys.D7) && ElapsedTime <= 0)
+                    {
+                        respuesta += "7";
+                        ElapsedTime = 15;
+                    }
+                    else if (oldKeyboardState.IsKeyDown(Keys.D8) && ElapsedTime <= 0)
+                    {
+                        respuesta += "8";
+                        ElapsedTime = 15;
+                    }
+                    else if (oldKeyboardState.IsKeyDown(Keys.D9) && ElapsedTime <= 0)
+                    {
+                        respuesta += "9";
+                        ElapsedTime = 15;
+                    }
+
+                }
+                if (oldKeyboardState.IsKeyDown(Keys.Enter) && ElapsedTime <= 0)
+                {
+                    //Validar respuesta
+                    if (respuesta != "correcto" && respuesta != "falso" && respuesta != "" && RespCorrecta == int.Parse(respuesta))
+                    {
+                        if (PoderesTotales < 5)
+                            PoderesTotales++;
+                        respuesta = "correcto";
+                    }
+                    else
+                    {
+                        respuesta = "falso";
+                    }
+                    ElapsedTime = 15;
+                }
+                if (PreguntaTime == 0)
+                {
+                    PreguntaTime = 600;
+                    respuesta = "";
+                    CambiarTabla();
+                }
+                ElapsedTime--;
+                PreguntaTime--;
+
+                oldKeyboardState = Keyboard.GetState();            
+             }
+            //Button isb = StatsAndControls.GetButton("IncreaseSpeed");
+            //Button dsb = StatsAndControls.GetButton("DecreaseSpeed");
+            //if (Session.Speed >= Session.MaxSpeed)
+            //{
+              //  isb.Texture = Session.Map.LargeErrorButtonTexture;
                 //isb.SetColor(Session.Map.ErrorColor);
                 //dsb.Texture = Session.Map.LargeNormalButtonTexture;
                 //dsb.SetColor(Session.Map.ForeColor);
-                //}
-                //else if (Session.Speed <= Session.MinSpeed)
-                //{
-                //  isb.Texture = Session.Map.LargeNormalButtonTexture;
+            //}
+            //else if (Session.Speed <= Session.MinSpeed)
+            //{
+              //  isb.Texture = Session.Map.LargeNormalButtonTexture;
                 //isb.SetColor(Session.Map.ForeColor);
                 //dsb.Texture = Session.Map.LargeErrorButtonTexture;
                 //dsb.SetColor(Session.Map.ErrorColor);
-                //}
-                //else
-                //{
-                //  isb.Texture = Session.Map.LargeNormalButtonTexture;
+            //}
+            //else
+            //{
+              //  isb.Texture = Session.Map.LargeNormalButtonTexture;
                 //isb.SetColor(Session.Map.ForeColor);
                 //dsb.Texture = Session.Map.LargeNormalButtonTexture;
                 //dsb.SetColor(Session.Map.ForeColor);
-                //}
+            //}
 
-                //if (waveindex != Session.Map.WaveIndex)
-                //{
-                //  waveindex = Session.Map.WaveIndex;
-                // StatsAndControls.GetText("Ola").Value = String.Format("Ola {0} de {1}", waveindex + 1, Session.Map.WaveList.Count);
-                //}
-            }
+            //if (waveindex != Session.Map.WaveIndex)
+            //{
+              //  waveindex = Session.Map.WaveIndex;
+               // StatsAndControls.GetText("Ola").Value = String.Format("Ola {0} de {1}", waveindex + 1, Session.Map.WaveList.Count);
+            //}
+
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, SpriteFont spriteFont)
