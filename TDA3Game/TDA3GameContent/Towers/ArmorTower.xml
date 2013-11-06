@@ -8,7 +8,7 @@
     <RadiusTextureAsset>radius</RadiusTextureAsset>
     <Cost>200</Cost>
     <Level>1</Level>
-    <MaxLevel>5</MaxLevel>
+    <MaxLevel>2</MaxLevel>
     <InitialStatistics>
       <Health>100</Health>
       <Damage>12</Damage>

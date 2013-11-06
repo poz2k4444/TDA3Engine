@@ -677,7 +677,7 @@ namespace TDA3Engine
                         if (PoderesTotales < 5)
                             PoderesTotales++;
                         respuesta = "correcto";
-                        if (clickedTower != null)
+                        if (ReferenceEquals(clickedTower,null))
                         {
                             if (PoderesTotales >= clickedTower.UpgradeCost && clickedTower.Level <= 1)
                             {
