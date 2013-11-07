@@ -164,6 +164,7 @@ namespace TDA3Engine
         {
             spriteFont = sFont;
             InitializeTablas();
+            iniciarSinTablas();
         }
 
         void clickableTower_LeftClickEvent(object sender, EventArgs e)
@@ -539,17 +540,18 @@ namespace TDA3Engine
         {
             if (is_wave_active())
             {
+                /*
                 do
                 {
                     izqui = random.Next(1, 10);
                 } while (!tablasSeleccionadas.Contains(izqui));
-
+                */
                 /*if( Session.Map.Difficulty == 1)
                     izqui = random.Next(1, 3);
                 else if (Session.Map.Difficulty == 2)
                     izqui = random.Next(1, 6);
-                else if( Session.Map.Difficulty == 3)
-                    izqui = random.Next(1, 9);*/
+                else if( Session.Map.Difficulty == 3)*/
+                    izqui = random.Next(1, 10);
                 dere = random.Next(1, 10);
                 RespCorrecta = izqui * dere;
                 string valorA = izqui + " X " + dere + " = ";
@@ -800,6 +802,33 @@ namespace TDA3Engine
             }
         }
 
+        void iniciarSinTablas()
+        {
+            InitializeMoneyAndTowers();
+            InitializePurchaseTower();
+            InitializeStatsAndControls();
+            selectTablas = true;
+            Button b1 = SelectTablas.GetButton("Tabla1");
+            b1.LeftClickEvent -= tablasSeleccionda1_LeftClick;
+            Button b2 = SelectTablas.GetButton("Tabla2");
+            b2.LeftClickEvent -= tablasSeleccionda2_LeftClick;
+            Button b3 = SelectTablas.GetButton("Tabla3");
+            b3.LeftClickEvent -= tablasSeleccionda3_LeftClick;
+            Button b4 = SelectTablas.GetButton("Tabla4");
+            b4.LeftClickEvent -= tablasSeleccionda4_LeftClick;
+            Button b5 = SelectTablas.GetButton("Tabla5");
+            b5.LeftClickEvent -= tablasSeleccionda5_LeftClick;
+            Button b6 = SelectTablas.GetButton("Tabla6");
+            b6.LeftClickEvent -= tablasSeleccionda6_LeftClick;
+            Button b7 = SelectTablas.GetButton("Tabla7");
+            b7.LeftClickEvent -= tablasSeleccionda7_LeftClick;
+            Button b8 = SelectTablas.GetButton("Tabla8");
+            b8.LeftClickEvent -= tablasSeleccionda8_LeftClick;
+            Button b9 = SelectTablas.GetButton("Tabla9");
+            b9.LeftClickEvent -= tablasSeleccionda9_LeftClick;
+            Button b10 = SelectTablas.GetButton("Iniciar");
+            b10.LeftClickEvent -= iniciarJuego_LeftClick;
+        }
         void iniciarJuego_LeftClick(object sender, EventArgs e)
         {
             if (tablasSeleccionadas.Count() != 0)
