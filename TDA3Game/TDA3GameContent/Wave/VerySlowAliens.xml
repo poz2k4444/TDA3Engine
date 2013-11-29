@@ -4,20 +4,6 @@
   <Asset Type="TDA3Engine.Wave">
     <MonsterAssets>
       <Item>FlyingAlien</Item>
-      <Item>ArmorAlien</Item>
-      <Item>SlowAlien</Item>
-      <Item>FlyingAlien</Item>
-      <Item>ArmorAlien</Item>
-      <Item>SlowAlien</Item>
-      <Item>FlyingAlien</Item>
-      <Item>ArmorAlien</Item>
-      <Item>SlowAlien</Item>
-      <Item>FlyingAlien</Item>
-      <Item>ArmorAlien</Item>
-      <Item>SlowAlien</Item>
-      <Item>FlyingAlien</Item>
-      <Item>ArmorAlien</Item>
-      <Item>SlowAlien</Item>
     </MonsterAssets>
     <Title>20 Aliens Lentos</Title>
     <BossWave>false</BossWave>

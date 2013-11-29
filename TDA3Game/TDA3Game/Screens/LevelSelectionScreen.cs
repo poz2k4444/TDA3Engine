@@ -12,6 +12,7 @@ namespace TDA3Game
     public class LevelSelectionScreen : GameScreen
     {
         MapLoader ml;
+
         Texture2D background, pixel;
         Map selectedMap, previousMap, nextMap;
         Point center;
@@ -128,7 +129,7 @@ namespace TDA3Game
             }
 
         }
-
+        
         void LevelSelectionScreen_Removing(object sender, EventArgs e)
         {
 

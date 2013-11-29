@@ -15,6 +15,8 @@ namespace TDA3Game
     {
 
         MainMenuEntry play, options, help, quit;
+        MapLoader ml;
+        Map selectedMap;
 
         string prevEntry, nextEntry, selectedEntry, cancelMenu;
         public override string PreviousEntryActionName
@@ -60,24 +62,24 @@ namespace TDA3Game
             InputMap.NewAction(SelectedEntryActionName, MousePresses.LeftMouse);
             InputMap.NewAction(MenuCancelActionName, Keys.Escape);
 
-            play = new MainMenuEntry(this, "Play", "PLAY THE GAME");
-            //options = new MainMenuEntry(this, "Options", "CHANGE GAME SETTINGS");
-            //help = new MainMenuEntry(this, "Help", "INPUT DIAGRAM AND GENERAL GAME INFORMATION");
-            //quit = new MainMenuEntry(this, "Quit", "DONE PLAYING FOR NOW?");
+            play = new MainMenuEntry(this, "Play", "PLAY GAME");
+            options = new MainMenuEntry(this, "Options", "CHANGE GAME SETTINGS");
+            help = new MainMenuEntry(this, "Help", "INPUT DIAGRAM AND GENERAL GAME INFORMATION");
+            quit = new MainMenuEntry(this, "Quit", "DONE PLAYING FOR NOW?");
 
             Removing += new EventHandler(MainMenuRemoving);
             Entering += new TransitionEventHandler(MainMenuScreen_Entering);
             Exiting += new TransitionEventHandler(MainMenuScreen_Exiting);
 
-            play.Selected += new EventHandler(PlaySelect);
-            //options.Selected += new EventHandler(OptionsSelect);
-            //help.Selected += new EventHandler(HelpSelect);
-            //quit.Selected += new EventHandler(QuitSelect);
+            play.Selected += new EventHandler(PlayNowSelect);
+            options.Selected += new EventHandler(PlaySelect);
+            help.Selected += new EventHandler(HelpSelect);
+            quit.Selected += new EventHandler(QuitSelect);
 
             MenuEntries.Add(play);
-            //MenuEntries.Add(options);
-            //MenuEntries.Add(help);
-            //MenuEntries.Add(quit);
+            MenuEntries.Add(options);
+            MenuEntries.Add(help);
+            MenuEntries.Add(quit);
 
             Viewport view = ScreenSystem.Viewport;
             SetDescriptionArea(new Rectangle(100, view.Height - 100,
@@ -128,6 +130,9 @@ namespace TDA3Game
                     MenuEntries[i].SetRelativePosition(new Vector2(0, offsetY), MenuEntries[i - 1], true);
                 }
             }
+
+            ml = ScreenSystem.Content.Load<MapLoader>("Maps\\MapLoader");
+            selectedMap = ml.Maps[0];
         }
 
         public override void UnloadContent()
@@ -167,10 +172,14 @@ namespace TDA3Game
         void PlaySelect(object sender, EventArgs e)
         {
             ExitScreen();
-            //ScreenSystem.AddScreen(new PlayScreen());
             ScreenSystem.AddScreen(new LevelSelectionScreen());
         }
 
+        void PlayNowSelect(object sender, EventArgs e)
+        {
+            ExitScreen();
+            ScreenSystem.AddScreen(new PlayScreen(new LevelSelectionScreen(), selectedMap));
+        }
         void OptionsSelect(object sender, EventArgs e)
         {
             FreezeScreen();

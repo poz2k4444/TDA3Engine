@@ -37,6 +37,16 @@ namespace TDA3Game
             session.MapFinished += new EventHandler(session_MapFinished);
         }
 
+        public PlayScreen(LevelSelectionScreen lss, Map m, bool b)
+        {
+            map = m;
+            levelselect = lss;
+            towers = new List<Tower>(10);
+            session = new Session(m);
+            session.HealthDecreased += new EventHandler(session_HealthDecreased);
+            session.MapFinished += new EventHandler(session_MapFinished);
+        }
+
         void session_MapFinished(object sender, EventArgs e)
         {
             if (session.health >= 0)

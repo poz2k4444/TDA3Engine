@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -164,7 +165,7 @@ namespace TDA3Engine
         {
             spriteFont = sFont;
             InitializeTablas();
-            iniciarSinTablas();
+            //iniciarSinTablas();
         }
 
         void clickableTower_LeftClickEvent(object sender, EventArgs e)
@@ -989,10 +990,18 @@ namespace TDA3Engine
                             if (PoderesTotales < 5)
                                 PoderesTotales++;
                             respuesta = "correcto";
+                            using (System.IO.StreamWriter file = File.AppendText(@"..\..\..\LOG_GOOD.txt"))
+                            {
+                                file.WriteLine(izqui + " * " + dere + " = " + respuesta);
+                            }
                         }
                         else
                         {
                             respuesta = "falso";
+                            using (System.IO.StreamWriter file = File.AppendText(@"..\..\..\LOG_FAIL.txt"))
+                            {
+                                file.WriteLine(izqui + " * " + dere + " = " + respuesta);
+                            }
                         }
                         ElapsedTime = 15;
                     }
