@@ -159,6 +159,9 @@ namespace TDA3Engine
                     b.Deactivate();
                 }
             }
+            //Aquii vaaaa  el cancel
+            ResetTowerReferences();
+            Session.UI.MapRegion.ResetTowerReferences();
         }
 
         public void Initialize(SpriteFont sFont)
@@ -339,7 +342,12 @@ namespace TDA3Engine
 
                 Button b = new Button(Session.Map.SmallNormalButtonTexture, bpos, new Text(bt, spriteFont, tpos), Session.Map.ForeColor, clickedTower);
                 b.LeftClickEvent += new EventHandler(buyTower_LeftClick);
-                SelectedTower.Add("BuyTower", b);
+                
+                Tower t = b.StoredObject as Tower;
+                if (t != null)
+                {
+                    Session.SelectTower(t);
+                }
             }
             else
             {
